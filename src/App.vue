@@ -33,7 +33,6 @@ import { intersectionService } from '@/examples/intersection'
 const countries = ref()
 const cities = ref()
 const citiesHashed: any = ref({})
-
 const loading = ref(false)
 
 const loadDataPartially = () => {

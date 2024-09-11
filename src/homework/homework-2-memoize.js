@@ -6,6 +6,19 @@ function sum (a, b) { return a + b } // for test
 // eslint-disable-next-line
 function memoize (fn) {
   // fn ваш код тут...
+  const cache = new Map()
+
+  return (...args) => {
+    const key = JSON.stringify(args)
+    console.log(key)
+
+    if (cache.has(key)) {
+      return 'from cache: ' + cache.get(key)
+    }
+    const result = fn(...args)
+    cache.set(key, result)
+    return result
+  }
 }
 
 // приклад виконання вашого коду

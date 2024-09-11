@@ -13,4 +13,13 @@ export const arrayHandler = (num) => {
 
 const array = [1, 2, 3, 4, 5]
 
+async function runConsistently (arr) {
+  for (const item of arr) {
+    const result = await arrayHandler(item)
+    console.log(result)
+  }
+}
+
+export const result = runConsistently(array)
+
 console.log(array)
