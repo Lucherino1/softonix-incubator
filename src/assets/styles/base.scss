@@ -5,11 +5,16 @@
 
 html {
   font-size: 16px;
+  line-height: 26px;
 }
 
 body {
-  @apply font-main text-base text-primary bg-gray-light;
+  @apply font-main text-base text-primary bg-vanilla;
   -webkit-font-smoothing: antialiased;
+}
+
+p {
+  @apply text-gray
 }
 
 a {
@@ -23,6 +28,7 @@ a {
 
 img, svg {
   display: initial;
+  object-fit: cover;
 }
 
 @media (hover: none) and (pointer: coarse) and (max-width: 767px) {
@@ -37,7 +43,7 @@ img, svg {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #0f172a;
+  @apply bg-gray
 }
 
 *::-webkit-scrollbar-track {
@@ -47,4 +53,21 @@ img, svg {
 
 body:not(.user-is-tabbing) *:focus {
   outline: none !important;
+}
+
+.app-container {
+  margin: 0 auto;
+  @apply max-w-[1440px] px-[135px]
+}
+
+.app-container_large {
+  margin: 0 auto;
+  @apply max-w-[1440px] pl-[70px] pr-[135px]
+}
+
+.main-header {
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 56px;
+  @apply text-gray-dark
 }

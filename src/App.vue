@@ -1,225 +1,165 @@
 <template>
-  <div class="app-container">
-    <h3 class="font-medium m-0">Contact list</h3>
-
-    <div class="contact-list grid gap-5 my-5">
-      <div class="contact-card rounded-lg bg-white shadow relative">
-        <div class="contact-card__body flex p-6 pb-2">
-          <div class="contact-card__info flex-grow text-sm truncate">
-            <template v-if="!isEdited">
-              <p class="font-medium">Jane Cooper</p>
-              <p class="text-gray mt-1 truncate">
-                Regional Paradigm Technician Regional Paradigm Technician Regional Paradigm Technician
-              </p>
-            </template>
-            <template v-else>
-              <input ref="contactInput" type="text" value="Jane Cooper" class="block w-full font-medium">
-              <input type="text" value="Regional Paradigm Technician" class="block w-full text-gray mt-1">
-            </template>
+  <header class="flex flex-col justify-center items-center w-full pb-14">
+    <nav class="app-container flex items-center h-120px max-h-[120px] lg:h-[100px] lg:max-h-[100px]">
+      <a class=" mr-[20px] xl:mr-[72px] min-w-[fit-content]" href="/">
+        <img class="h-full w-full" src="/src/assets/images/salty-logo.svg" alt="Salty logo">
+      </a>
+      <NavBar class=" xl:mr-[380px] lg:mr-[200px] md:mr-[100px]" />
+      <button
+        class="group flex items-center ml-auto gap-[6px] border leading-4 left-0
+         hover:bg-orange hover:text-white transition duration-300
+        rounded-full font-poppins font-medium text-orange py-[19px] px-[34px] min-w-[fit-content] right-0"
+      >
+        Book Now
+        <IconBooking class=" group-fill-current text-orange group-hover:text-white transition duration-300" />
+      </button>
+    </nav>
+    <div class="app-container flex gap-[60px] pt-[10px]">
+      <div class="">
+        <h1 class="pt-[75px] font-sen font-bold text-[84px] leading-[86px] text-gray-dark">
+          Discover the Best Lovely Places
+        </h1>
+        <p class="pt-[26px] pb-11 pr-[70px] text-18px text-gray leading-7">
+          Plan and book your perfect trip with expert advice, travel tips,
+          destination information and inspiration from us.
+        </p>
+        <div class="flex bg-white absolute py-4 pl-[28px] pr-[20px] rounded-[38px] items-center">
+          <div class="pr-[34px] border-r border-r-gray-ultra-light py-[4px]">
+            <p class="font-medium text-gray-dark text-[18px] leading-4">Where</p>
+            <div class="flex gap-[26px] items-center max-w-[140px] mt-[8px]">
+              <p class=" text-[12px] leading-3 truncate">Center Point, London</p>
+              <IconPoint />
+            </div>
           </div>
-          <img
-            class="contact-card__avatar w-[40px] h-[40px] object-cover ml-2 rounded-full shrink-0"
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="contact-logo"
-          >
-        </div>
-
-        <div class="flex px-6 mb-4">
-          <span
-            v-if="isEdited"
-            class="text-gray font-medium text-xs cursor-pointer hover:underline ml-auto"
-            @click="isEdited = false"
-          >
-            Cancel
-          </span>
-          <span
-            v-if="isEdited"
-            class="text-blue-500 font-medium text-xs cursor-pointer hover:underline ml-4"
-            @click="isEdited = false"
-          >
-            Save
-          </span>
-          <span
-            v-if="!isEdited"
-            class="text-blue-500 font-medium text-xs cursor-pointer hover:underline ml-auto"
-            @click="selectEditView"
-          >
-            Edit
-          </span>
-        </div>
-
-        <div class="contact-card__footer flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light">
-          <div class="flex items-center justify-center flex-1 py-4 cursor-pointer hover:text-gray">
-            <svg class="h-5 w-5 text-gray-medium" x-description="Heroicon name: mini/envelope" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-              <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-            </svg>
-            <span class="ml-3">Email</span>
+          <div class="pl-[34px] pr-14 py-[2px]">
+            <p class="font-medium text-gray-dark text-[18px] leading-4">Date</p>
+            <div class="flex gap-[26px] items-center max-w-[140px] mt-[8px]">
+              <p class=" text-[12px] leading-3 truncate">09th March,2021</p>
+              <IconCalendar />
+            </div>
           </div>
-          <div
-            class="flex items-center justify-center flex-1 py-4 border-l
-            border-gray-ultra-light cursor-pointer hover:text-gray"
-          >
-            <svg class="h-5 w-5 text-gray-medium" x-description="Heroicon name: mini/phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <!-- eslint-disable-next-line max-len -->
-              <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clip-rule="evenodd" />
-            </svg>
-            <span class="ml-3">Call</span>
-          </div>
+          <button class="bg-orange rounded-full min-w-[54px] min-h-[54px] flex justify-center items-center">
+            <IconMagnifyingGlass class="" />
+          </button>
         </div>
       </div>
+      <img class="" src="/src/assets/images/hero-image.svg" alt="Header img">
+    </div>
+  </header>
 
-      <div class="contact-card rounded-lg bg-white shadow relative">
-        <div class="contact-card__body flex p-6 pb-2">
-          <div class="contact-card__info flex-grow text-sm truncate">
-            <template v-if="!isEdited">
-              <p class="font-medium">Jane Cooper</p>
-              <p class="text-gray mt-1 truncate">
-                Regional Paradigm Technician Regional Paradigm Technician Regional Paradigm Technician
-              </p>
-            </template>
-            <template v-else>
-              <input ref="contactInput" type="text" value="Jane Cooper" class="block w-full font-medium">
-              <input type="text" value="Regional Paradigm Technician" class="block w-full text-gray mt-1">
-            </template>
-          </div>
-          <img
-            class="contact-card__avatar w-[40px] h-[40px] object-cover ml-2 rounded-full shrink-0"
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="contact-logo"
-          >
-        </div>
-
-        <div class="flex px-6 mb-4">
-          <span
-            v-if="isEdited"
-            class="text-gray font-medium text-xs cursor-pointer hover:underline ml-auto"
-            @click="isEdited = false"
-          >
-            Cancel
-          </span>
-          <span
-            v-if="isEdited"
-            class="text-blue-500 font-medium text-xs cursor-pointer hover:underline ml-4"
-            @click="isEdited = false"
-          >
-            Save
-          </span>
-          <span
-            v-if="!isEdited"
-            class="text-blue-500 font-medium text-xs cursor-pointer hover:underline ml-auto"
-            @click="selectEditView"
-          >
-            Edit
-          </span>
-        </div>
-
-        <div class="contact-card__footer flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light">
-          <div class="flex items-center justify-center flex-1 py-4 cursor-pointer hover:text-gray">
-            <svg class="h-5 w-5 text-gray-medium" x-description="Heroicon name: mini/envelope" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-              <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-            </svg>
-            <span class="ml-3">Email</span>
-          </div>
-          <div
-            class="flex items-center justify-center flex-1 py-4 border-l
-            border-gray-ultra-light cursor-pointer hover:text-gray"
-          >
-            <svg class="h-5 w-5 text-gray-medium" x-description="Heroicon name: mini/phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <!-- eslint-disable-next-line max-len -->
-              <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clip-rule="evenodd" />
-            </svg>
-            <span class="ml-3">Call</span>
-          </div>
-        </div>
+  <section class="app-container flex flex-col justify-center pt-5 items-center mt-24 pb-8">
+    <div class="flex justify-between items-start w-full">
+      <div>
+        <p class="main-header mb-6">Categories</p>
+        <p class=" max-w-[370px]">
+          Here are lots of interesting destinations to visit,
+          but don’t be confused—they’re already grouped by category.
+        </p>
+        <img src="" alt="">
       </div>
+      <AppArrowBtns />
+    </div>
+    <div class="flex gap-[30px] mt-[60px]">
+      <CategoriesCard title="Beach" img-src="/src/assets/images/categories-images/beach.svg" />
+      <CategoriesCard title="Desert" img-src="/src/assets/images/categories-images/desert.svg" />
+      <CategoriesCard title="Mountain" img-src="/src/assets/images/categories-images/mountain.svg" />
+      <CategoriesCard title="Tample" img-src="/src/assets/images/categories-images/temple.svg" />
+      <CategoriesCard title="Tower" img-src="/src/assets/images/categories-images/tower.svg" />
+      <CategoriesCard title="Pyramid" img-src="/src/assets/images/categories-images/pyramid.svg" />
+    </div>
+  </section>
 
-      <div class="contact-card rounded-lg bg-white shadow relative">
-        <div class="contact-card__body flex p-6 pb-2">
-          <div class="contact-card__info flex-grow text-sm truncate">
-            <template v-if="!isEdited">
-              <p class="font-medium">Jane Cooper</p>
-              <p class="text-gray mt-1 truncate">
-                Regional Paradigm Technician Regional Paradigm Technician Regional Paradigm Technician
-              </p>
-            </template>
-            <template v-else>
-              <input ref="contactInput" type="text" value="Jane Cooper" class="block w-full font-medium">
-              <input type="text" value="Regional Paradigm Technician" class="block w-full text-gray mt-1">
-            </template>
-          </div>
-          <img
-            class="contact-card__avatar w-[40px] h-[40px] object-cover ml-2 rounded-full shrink-0"
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="contact-logo"
-          >
-        </div>
-
-        <div class="flex px-6 mb-4">
-          <span
-            v-if="isEdited"
-            class="text-gray font-medium text-xs cursor-pointer hover:underline ml-auto"
-            @click="isEdited = false"
-          >
-            Cancel
-          </span>
-          <span
-            v-if="isEdited"
-            class="text-blue-500 font-medium text-xs cursor-pointer hover:underline ml-4"
-            @click="isEdited = false"
-          >
-            Save
-          </span>
-          <span
-            v-if="!isEdited"
-            class="text-blue-500 font-medium text-xs cursor-pointer hover:underline ml-auto"
-            @click="selectEditView"
-          >
-            Edit
-          </span>
-        </div>
-
-        <div class="contact-card__footer flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light">
-          <div class="flex items-center justify-center flex-1 py-4 cursor-pointer hover:text-gray">
-            <svg class="h-5 w-5 text-gray-medium" x-description="Heroicon name: mini/envelope" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-              <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-            </svg>
-            <span class="ml-3">Email</span>
-          </div>
-          <div
-            class="flex items-center justify-center flex-1 py-4 border-l
-            border-gray-ultra-light cursor-pointer hover:text-gray"
-          >
-            <svg class="h-5 w-5 text-gray-medium" x-description="Heroicon name: mini/phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <!-- eslint-disable-next-line max-len -->
-              <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clip-rule="evenodd" />
-            </svg>
-            <span class="ml-3">Call</span>
-          </div>
+  <section class="app-container_large flex flex-col py-[50px] mt-14">
+    <div class="flex gap-40">
+      <img class=" left-16" src="/src//assets/images/camera-man-image.svg" alt="A happy traveller">
+      <div class=" flex flex-col gap-5 pt-20">
+        <p class=" text-[20px] leading-5 font-semibold text-orange">Our Experience</p>
+        <p class="main-header">Our Stories Have Adventures</p>
+        <p class=" pb-5 pr-16">
+          We are experienced in bringing adventures to stay their journey,
+          with all outdoor destinations in the world as our specialties.
+          Start your adventure now! Nature has already called you!
+        </p>
+        <div class="flex gap-5">
+          <DestinationCard title="12K+" text="Succes Journey" />
+          <DestinationCard title="16+" text="Awards Winning" />
+          <DestinationCard title="20+" text="Years Of Experience" />
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="app-container flex flex-col py-[50px]">
+    <div class="flex items-center pb-[35px]">
+      <p class="main-header leading-[66px] flex-1 justify-start">Find Popular Destination</p>
+      <AppArrowBtns class="flex-1 justify-end" />
+    </div>
+    <div class="carrousel-container">
+      <TourCard
+        title="Mountain Hiking Tour"
+        text="Mountain Hiking Tour"
+        price="$89"
+        amount="Person"
+        img-src="/src/assets/images/tours-images/mountain-hiking-tour.svg"
+      />
+      <TourCard
+        title="Machu Picchu, Peru"
+        text="Machu Picchu, Peru"
+        price="$99"
+        amount="Person"
+        img-src="/src/assets/images/tours-images/machu-picchu-peru.svg"
+      />
+      <TourCard
+        title="The Grand Canyon, Arizona"
+        text="Mountain Hiking Tour"
+        price="$70"
+        amount="Person"
+        img-src="/src/assets/images/tours-images/the-grand-canyon-arizona.svg"
+      />
+      <TourCard
+        title="Rome, Italy"
+        text="Mountain Hiking Tour"
+        price="$99"
+        amount="Person"
+        img-src="/src/assets/images/tours-images/rome-italy.svg"
+      />
+    </div>
+  </section>
+
+  <section class="app-container flex flex-col items-center my-14">
+    <div class="flex flex-col items-center justify-center mx-auto text-center pb-7">
+      <p class="main-header leading-[66px] pt-9">Top Destinations</p>
+      <p class=" pt-4">Sost Brilliant reasons Entrada should be your one-stop-shop!</p>
+    </div>
+    <div class="flex gap-[14px] mx-0 max-w-[600px]">
+      <AppSectionButton class="font-poppins px-5 py-[10px]" content="London" />
+      <AppSectionButton class="font-poppins px-5 py-[10px]" content="Bangkok" />
+      <AppSectionButton class="font-poppins px-5 py-[10px]" content="England" />
+      <AppSectionButton class="font-poppins px-5 py-[10px]" content="Singapore" />
+      <AppSectionButton class="font-poppins px-5 py-[10px]" content="Italy" />
+    </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
-// YOUR CODE HERE
-const isEdited = ref(false)
-const contactInput = ref()
-
-const selectEditView = async () => {
-  isEdited.value = true
-  await nextTick()
-  contactInput.value.focus()
-}
+import AppArrowBtns from './components/AppArrowBtns.vue'
+import AppSectionButton from './components/AppSectionButton.vue'
+import CategoriesCard from './components/CategoriesCard.vue'
+import DestinationCard from './components/DestinationCard.vue'
+import IconCalendar from './components/icons/IconCalendar.vue'
+import IconPoint from './components/icons/IconPoint.vue'
+import IconBooking from './components/icons/icons-for-buttons/IconBooking.vue'
+import IconMagnifyingGlass from './components/icons/icons-for-buttons/IconMagnifyingGlass.vue'
+import NavBar from './components/NavBar.vue'
+import TourCard from './components/TourCard.vue'
 </script>
 
-<style lang="scss">
-.app-container {
-  max-width: 1440px;
-  padding: 30px;
+<style scoped>
+.carrousel-container {
+  scroll-snap-type: x mandatory;
+  @apply flex gap-[30px] mx-auto xl:w-[1170px] overflow-x-auto pb-5
 }
-
-.contact-list {
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+.carrousel-container > * {
+  scroll-snap-align: center;
 }
 </style>

@@ -10,14 +10,18 @@ export default {
     colors: {
       ...colors,
       primary: '#0f172a',
-      gray: '#6b7280',
-      'gray-light': '#f3f4f6',
-      'gray-ultra-light': '#e5e7eb',
-      'gray-medium': '#9ca3af',
-      'gray-dark': '#374151'
+      gray: '#5b5f62',
+      'gray-light': '#9498a4',
+      'gray-ultra-light': '#eaeaeb',
+      'gray-dark': '#2d3134',
+      vanilla: '#faf8ed',
+      orange: '#f66f4d',
+      'blue-dark': '#2e476b'
     },
     fontFamily: {
-      main: ['Inter', 'sans-serif']
+      main: ['Inter', 'sans-serif'],
+      poppins: ['Poppins', 'sans-serif'],
+      sen: ['Sen', 'sans-serif']
     },
     extend: {}
   },

@@ -7,7 +7,19 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppArrowBtns: typeof import('./../src/components/AppArrowBtns.vue')['default']
+    AppSectionButton: typeof import('./../src/components/AppSectionButton.vue')['default']
+    CategoriesCard: typeof import('./../src/components/CategoriesCard.vue')['default']
+    DestinationCard: typeof import('./../src/components/DestinationCard.vue')['default']
+    IconArrowLeft: typeof import('./../src/components/icons/icons-for-buttons/IconArrowLeft.vue')['default']
+    IconArrowRight: typeof import('./../src/components/icons/icons-for-buttons/IconArrowRight.vue')['default']
+    IconBooking: typeof import('./../src/components/icons/icons-for-buttons/IconBooking.vue')['default']
+    IconCalendar: typeof import('./../src/components/icons/IconCalendar.vue')['default']
+    IconMagnifyingGlass: typeof import('./../src/components/icons/icons-for-buttons/IconMagnifyingGlass.vue')['default']
+    IconPoint: typeof import('./../src/components/icons/IconPoint.vue')['default']
+    NavBar: typeof import('./../src/components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TourCard: typeof import('./../src/components/TourCard.vue')['default']
   }
 }
