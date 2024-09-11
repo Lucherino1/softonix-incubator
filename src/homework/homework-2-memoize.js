@@ -10,7 +10,6 @@ function memoize (fn) {
 
   return (...args) => {
     const key = JSON.stringify(args)
-    console.log(key)
 
     if (cache.has(key)) {
       return 'from cache: ' + cache.get(key)
