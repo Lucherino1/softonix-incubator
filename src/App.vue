@@ -26,37 +26,38 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { countryService } from '@/examples/data-preparation'
-import { intersectionService } from '@/examples/intersection'
+<script lang="js" setup>
+import { result } from '@/homework/homework-1-promises.js'
 
-const countries = ref()
-const cities = ref()
-const citiesHashed: any = ref({})
-const loading = ref(false)
+console.log(result)
 
-const loadDataPartially = () => {
-  loading.value = true
+// function sum (a, b) { return a + b } // for test
 
-  Promise.allSettled([countryService.getCountries(), countryService.getCities()])
-    .then(res => {
-      if (res[0].status === 'fulfilled') {
-        countries.value = res[0].value
-      }
+// // eslint-disable-next-line
+// function memoize (fn) {
+//   // fn ваш код тут...
+//   const cache = new Map()
 
-      if (res[1].status === 'fulfilled') {
-        cities.value = res[1].value
-        citiesHashed.value = countryService.prepareHashedCities(cities.value)
-      }
-    })
-    .finally(() => (loading.value = false))
-}
+//   return (...args) => {
+//     const key = JSON.stringify(args)
 
-loadDataPartially()
+//     if (cache.has(key)) {
+//       console.log('from cache: ' + cache.get(key))
+//       return cache.get(key)
+//     }
+//     const result = fn(...args)
+//     cache.set(key, result)
+//     return result
+//   }
+// }
 
-onMounted(() => {
-  intersectionService.detectElementByIntersection()
-})
+// // приклад виконання вашого коду
+// const sumMemoized = memoize(sum)
+
+// sumMemoized(1, 3) // результат 4
+// sumMemoized(3, 3) // результат 6
+// sumMemoized(1, 3) // результат 4, відбулось повторне виконання, результат повернуто з кешу без виклику додавання
+
 </script>
 
 <style lang="scss">

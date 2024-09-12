@@ -12,7 +12,8 @@ function memoize (fn) {
     const key = JSON.stringify(args)
 
     if (cache.has(key)) {
-      return 'from cache: ' + cache.get(key)
+      console.log('from cache: ' + cache.get(key))
+      return cache.get(key)
     }
     const result = fn(...args)
     cache.set(key, result)
@@ -21,7 +22,7 @@ function memoize (fn) {
 }
 
 // приклад виконання вашого коду
-const sumMemoized = memoize(sum)
+export const sumMemoized = memoize(sum)
 
 sumMemoized(1, 3) // результат 4
 sumMemoized(3, 3) // результат 6
