@@ -14,7 +14,7 @@
       </div>
       <div class="flex justify-between items-center pt-4">
         <div class="">
-          <p class="font-medium text-xl leading-5 pb-2">{{ name }}</p>
+          <p class="font-medium text-xl leading-5 pb-2 text-gray-dark">{{ name }}</p>
           <p class="text-xs leading-3">{{ job }}</p>
         </div>
         <AppArrowBtns width="40" height="40" />

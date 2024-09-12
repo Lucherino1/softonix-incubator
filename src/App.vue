@@ -198,7 +198,7 @@
 
   <section class=" app-container flex flex-col items-center py-[66px] mt-10">
     <div class="flex gap-[175px] items-center">
-      <div class="bg-light-peach w-full h-full rounded-[245px] ml-[65px]">
+      <div class="bg-peach-light w-full h-full rounded-[245px] ml-[65px]">
         <img
           src="./assets/images/customer-image.svg"
           class="w-full h-full object-cover rounded-[245px]"
@@ -219,8 +219,71 @@
   </section>
 
   <section class="app-container justify-center py-[46px] flex mt-7">
-    <div></div>
+    <div
+      class="bg-peach-ultra-light w-full h-full flex flex-col
+    justify-center items-center text-center py-[75px] rounded-[30px]
+    bg-[url('/src/assets/images/bg-sing-up-section.svg')] bg-cover bg-center"
+    >
+      <p class="font-semibold text-[40px] leading-10 text-gray-dark pb-4">
+        Sign up to our newsletter
+      </p>
+      <p class=" leading-[26px] pb-10 text-gray">
+        Reciev latest news, update, and many other things <br> every week.
+      </p>
+      <div class="bg-white py-[10px] flex justify-between pr-3 pl-[26px] rounded-xl">
+        <input class="pr-[160px] text-[14px] leading-[14px]" type="email" placeholder="Enter Your email address">
+        <button
+          class="bg-orange px-3 py-3 rounded-xl group hover:bg-white transition-colors duration-300"
+          :style="{ boxShadow: '0px 5px 14px 0px #F7674340'}"
+        >
+          <IconBooking class="text-white group-hover:text-orange" />
+        </button>
+      </div>
+    </div>
   </section>
+  <footer class="app-container mt-[15px] py-20">
+    <div class="flex gap-[275px]">
+      <div class="flex flex-col">
+        <a class="min-w-[fit-content]" href="/">
+          <img class="h-full w-full" src="/src/assets/images/salty-logo.svg" alt="Salty logo">
+        </a>
+        <p class="pt-5 pb-10">Enjoy the touring <br> with Salty</p>
+        <div class="flex gap-[14px]">
+          <a href=""><IconFaceBook /></a>
+          <a href=""><IconInstagram /></a>
+          <a href=""><IconTwitter /></a>
+        </div>
+      </div>
+      <div class="flex gap-28 pb-1">
+        <div class="flex flex-col">
+          <p class="footer__main-header pb-[22px]">Resources</p>
+          <a class="footer__text" href="">Download</a>
+          <a class="footer__text" href="">Help Center</a>
+          <a class="footer__text" href="">Guide Book</a>
+          <a class="footer__text" href="">App Directory</a>
+        </div>
+        <div class="flex flex-col">
+          <p class="footer__main-header pb-[22px]">Travellers</p>
+          <a class="footer__text" href="">Why Travellers</a>
+          <a class="footer__text" href="">Enterprice</a>
+          <a class="footer__text" href="">Customer Stories</a>
+          <a class="footer__text" href="">Instagram post</a>
+        </div>
+        <div class="flex flex-col">
+          <p class="footer__main-header pb-[22px]">Company</p>
+          <a class="footer__text" href="">Travelling</a>
+          <a class="footer__text" href="">About Locato</a>
+          <a class="footer__text" href="">Success</a>
+          <a class="footer__text" href="">Information</a>
+        </div>
+        <div class="flex flex-col">
+          <p class="footer__main-header pb-[22px]">Get App</p>
+          <a class="footer__text" href="">App Store</a>
+          <a class="footer__text" href="">Google Play Store</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <script lang="ts" setup>
@@ -236,6 +299,10 @@ import NavBar from './components/NavBar.vue'
 import TourCard from './components/TourCard.vue'
 import TopDestinationCard from './components/TopDestinationCard.vue'
 import ClientFeedbackCard from './components/ClientFeedbackCard.vue'
+import IconInstagram from './components/icons/icons-social-medias/IconInstagram.vue'
+import IconTwitter from './components/icons/icons-social-medias/IconTwitter.vue'
+import IconFaceBook from './components/icons/icons-social-medias/IconFaceBook.vue'
+
 </script>
 
 <style scoped>
@@ -261,5 +328,19 @@ import ClientFeedbackCard from './components/ClientFeedbackCard.vue'
     background-color: #ffd482;
     border-radius: 12px;
   }
+}
+
+.footer__main-header {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  @apply text-gray-dark capitalize
+}
+
+.footer__text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 34px;
+  @apply text-gray-slate
 }
 </style>

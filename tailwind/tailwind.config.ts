@@ -14,10 +14,12 @@ export default {
       'gray-light': '#9498a4',
       'gray-ultra-light': '#eaeaeb',
       'gray-dark': '#2d3134',
+      'gray-slate': '#676a6c',
       vanilla: '#faf8ed',
       orange: '#f66f4d',
       'blue-dark': '#2e476b',
-      'light-peach': '#ee8162'
+      'peach-light': '#ee8162',
+      'peach-ultra-light': '#ffd482'
     },
     fontFamily: {
       main: ['Inter', 'sans-serif'],

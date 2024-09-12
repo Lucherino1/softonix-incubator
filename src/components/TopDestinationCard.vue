@@ -1,12 +1,12 @@
 <template>
   <div
     :style="{ width: width, height: height }"
-    class=" relative rounded-[20px] bg-gray-light cursor-pointer"
+    class=" relative rounded-[20px] bg-gray-light cursor-pointer flex group"
   >
     <img :src="imgSrc" alt="Card Image" class="w-full h-full object-cover">
     <div
       class="absolute text-center bg-white rounded-xl left-6 top-6 px-[9px] py-[5px]
-      group hover:bg-gray-dark transition-colors duration-300"
+      group-hover:bg-gray-dark transition-colors duration-300"
     >
       <p class="group-hover:text-white font-medium leading-[14px] text-[14px]">
         {{ score }}
