@@ -81,9 +81,9 @@
           Start your adventure now! Nature has already called you!
         </p>
         <div class="flex gap-5">
-          <DestinationCard title="12K+" text="Succes Journey" />
-          <DestinationCard title="16+" text="Awards Winning" />
-          <DestinationCard title="20+" text="Years Of Experience" />
+          <PopularDestinationCard title="12K+" text="Succes Journey" />
+          <PopularDestinationCard title="16+" text="Awards Winning" />
+          <PopularDestinationCard title="20+" text="Years Of Experience" />
         </div>
       </div>
     </div>
@@ -126,7 +126,7 @@
     </div>
   </section>
 
-  <section class="app-container flex flex-col items-center my-14">
+  <section class="app-container flex flex-col items-center mt-14 mb-10">
     <div class="flex flex-col items-center justify-center mx-auto text-center pb-7">
       <p class="main-header leading-[66px] pt-9">Top Destinations</p>
       <p class=" pt-4">Sost Brilliant reasons Entrada should be your one-stop-shop!</p>
@@ -138,6 +138,88 @@
       <AppSectionButton class="font-poppins px-5 py-[10px]" content="Singapore" />
       <AppSectionButton class="font-poppins px-5 py-[10px]" content="Italy" />
     </div>
+    <div class="flex gap-[30px] mt-[50px]">
+      <div class="flex flex-col gap-[26px]">
+        <TopDestinationCard
+          width="270px"
+          height="250px"
+          img-src="/src/assets/images/top-destinations-images/vientam-1.svg"
+          score="3.5"
+          title="Vientam"
+          text="Worefall"
+        />
+        <TopDestinationCard
+          width="270px"
+          height="250px"
+          img-src="/src/assets/images/top-destinations-images/vientam-2.svg"
+          score="3.5"
+          title="Vientam"
+          text="Worefall"
+        />
+      </div>
+      <TopDestinationCard
+        width="370px"
+        height="526px"
+        img-src="/src/assets/images/top-destinations-images/vientam-3.svg"
+        score="3.5"
+        title="Vientam"
+        text="Worefall"
+      />
+      <div class="flex flex-col gap-[13px]">
+        <TopDestinationCard
+          width="470px"
+          height="250px"
+          img-src="/src/assets/images/top-destinations-images/vientam-4.svg"
+          score="3.5"
+          title="Vientam"
+          text="Worefall"
+        />
+        <div class="flex gap-[30px]">
+          <TopDestinationCard
+            width="170px"
+            height="263px"
+            img-src="/src/assets/images/top-destinations-images/vientam-5.svg"
+            score="3.5"
+            title="Vientam"
+            text="Worefall"
+          />
+          <TopDestinationCard
+            width="270px"
+            height="263px"
+            img-src="/src/assets/images/top-destinations-images/vientam-6.svg"
+            score="3.5"
+            title="Vientam"
+            text="Worefall"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class=" app-container flex flex-col items-center py-[66px] mt-10">
+    <div class="flex gap-[175px] items-center">
+      <div class="bg-light-peach w-full h-full rounded-[245px] ml-[65px]">
+        <img
+          src="./assets/images/customer-image.svg"
+          class="w-full h-full object-cover rounded-[245px]"
+          alt="Happy Customer Image"
+        >
+      </div>
+      <div class="flex flex-col">
+        <p class="feedback__header main-header pr-[70px] pb-[26px]">A customer said about us:</p>
+        <ClientFeedbackCard
+          review="Salty helped me a lot in finding the best place for our first outdoor adventure trip.
+          They responded very quickly and gave me a detailed account of the place—its history,
+           as well as its best features."
+          name="Andrew Sarma"
+          job="Enterpreneur"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="app-container justify-center py-[46px] flex mt-7">
+    <div></div>
   </section>
 </template>
 
@@ -145,13 +227,15 @@
 import AppArrowBtns from './components/AppArrowBtns.vue'
 import AppSectionButton from './components/AppSectionButton.vue'
 import CategoriesCard from './components/CategoriesCard.vue'
-import DestinationCard from './components/DestinationCard.vue'
+import PopularDestinationCard from './components/PopularDestinationCard.vue'
 import IconCalendar from './components/icons/IconCalendar.vue'
 import IconPoint from './components/icons/IconPoint.vue'
 import IconBooking from './components/icons/icons-for-buttons/IconBooking.vue'
 import IconMagnifyingGlass from './components/icons/icons-for-buttons/IconMagnifyingGlass.vue'
 import NavBar from './components/NavBar.vue'
 import TourCard from './components/TourCard.vue'
+import TopDestinationCard from './components/TopDestinationCard.vue'
+import ClientFeedbackCard from './components/ClientFeedbackCard.vue'
 </script>
 
 <style scoped>
@@ -161,5 +245,21 @@ import TourCard from './components/TourCard.vue'
 }
 .carrousel-container > * {
   scroll-snap-align: center;
+}
+
+.feedback__header {
+  position: relative;
+  padding-top: 12px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 67px;
+    height: 8px;
+    background-color: #ffd482;
+    border-radius: 12px;
+  }
 }
 </style>

@@ -69,5 +69,5 @@ body:not(.user-is-tabbing) *:focus {
   font-weight: 600;
   font-size: 56px;
   line-height: 56px;
-  @apply text-gray-dark
+  @apply text-gray-dark capitalize
 }

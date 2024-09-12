@@ -16,7 +16,8 @@ export default {
       'gray-dark': '#2d3134',
       vanilla: '#faf8ed',
       orange: '#f66f4d',
-      'blue-dark': '#2e476b'
+      'blue-dark': '#2e476b',
+      'light-peach': '#ee8162'
     },
     fontFamily: {
       main: ['Inter', 'sans-serif'],
