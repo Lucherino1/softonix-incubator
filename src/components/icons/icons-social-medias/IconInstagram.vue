@@ -1,9 +1,10 @@
 <template>
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="16" cy="16" r="15.5" stroke="#5B5F62" />
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="group hover:stroke-orange">
+    <circle cx="16" cy="16" r="15.5" stroke="#5B5F62" class="group-hover:stroke-orange" />
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
+      class="group-hover:fill-orange group-hover:stroke-orange"
       d="M12.07 10.315C12.4512 10.1667 12.8877 10.0654 13.5265 10.0363C14.1666 10.0068 14.3712
       10 16.0007 10C17.6302 10 17.8347 10.0072 18.4745 10.0363C19.1128 10.0649 19.549 10.1667
       19.9309 10.315C20.325 10.4682 20.6599 10.6732 20.9933 11.0071C21.3268 11.341 21.5319 11.6754
