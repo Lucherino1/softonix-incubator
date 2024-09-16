@@ -23,7 +23,7 @@ interface IUser {
 type TAddType = 'append' | 'prepend'
 
 class Collection<T> {
-  private elements: T[] = []
+  private elements: T[]
 
   constructor (elements: T[] = []) {
     this.elements = elements
