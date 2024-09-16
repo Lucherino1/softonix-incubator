@@ -1,16 +1,16 @@
 <template>
   <header class="flex flex-col justify-center items-center w-full pb-14">
-    <nav class="app-container flex items-center min-h-[100px] h-100px text-nowrap">
+    <nav class="app-container flex items-center justify-center min-h-[100px] h-100px text-nowrap">
       <a class=" mr-[20px] xl:mr-[72px] min-w-[fit-content]" href="/">
         <img class="h-full w-full" src="/src/assets/images/salty-logo.svg" alt="Salty logo">
       </a>
       <div
-        class="font-poppins font-normal text-16[px] leading-4 text-blue-dark
+        class="font-poppins font-normal text-[16px] leading-4 text-blue-dark
         menu-container"
       >
         <ul class="flex gap-[36px]">
           <li
-            class="nav__selected-list-item relative cursor-pointer pb-[0.5rem]
+            class="nav__selected-list-item relative cursor-pointer pb-[8px]
              hover:text-orange transition duration-300"
           >
             Home
@@ -38,17 +38,17 @@
         <IconBooking class=" group-fill-current text-orange group-hover:text-white transition duration-300" />
       </button>
     </nav>
-    <div class="app-container flex flex-col lg:flex-row justify-between pt-[10px]">
-      <div class="pb-1 lg:pb-[30px] order-2 lg:order-1">
+    <div class="app-container flex flex-row gap-1 md:gap-5 lg:gap-[70px] pt-[10px]">
+      <div class="pb-1 lg:pb-[30px]">
         <h1
-          class="pt-1 lg:pt-[65px] font-sen font-bold text-center lg:text-left
+          class="pt-1 lg:pt-[65px] font-sen font-bold tracking-wide
           text-[32px] lg:text-[64px] xl:text-[84px] lg:leading-[86px] text-gray-dark"
         >
           Discover the Best Lovely Places
         </h1>
         <p
-          class="pt-[26px] pb-5 md:pb-11 lg:pr-[70px] text-[14px] lg:text-[18px]
-          text-center lg:text-left text-gray lg:leading-7"
+          class="pt-[26px] pb-5 md:pb-11 lg:pr-[70px] text-[16px] lg:text-[18px]
+           text-justify text-gray lg:leading-7 max-w-[400px] lg:max-w-none"
         >
           Plan and book your perfect trip with expert advice, travel tips,
           destination information and inspiration from us.
@@ -77,7 +77,7 @@
         </div>
       </div>
       <img
-        class="max-w-[534px] max-h-[555px] mx-auto lg:mx-0 order-1 lg:order-2 object-cover"
+        class="lg:max-w-[534px] lg:max-h-[555px] max-w-[267px] max-h-[277px] object-cover hidden sm:block"
         src="/src/assets/images/hero-image.svg"
         alt="Header img"
       >
@@ -96,7 +96,7 @@
       </div>
       <AppArrowBtns />
     </div>
-    <div class="flex gap-[30px] mt-[60px]">
+    <div class="flex gap-[30px] mt-[60px] carrousel-container xl:snap-none">
       <CategoriesCard title="Beach" img-src="/src/assets/images/categories-images/beach.svg" />
       <CategoriesCard title="Desert" img-src="/src/assets/images/categories-images/desert.svg" />
       <CategoriesCard title="Mountain" img-src="/src/assets/images/categories-images/mountain.svg" />
@@ -107,17 +107,21 @@
   </section>
 
   <section class="app-container_large flex flex-col py-[50px] mt-14">
-    <div class="flex gap-40">
-      <img class=" left-16" src="/src//assets/images/camera-man-image.svg" alt="A happy traveller">
-      <div class=" flex flex-col gap-5 pt-20">
+    <div class="flex gap-14 xl:gap-40">
+      <img
+        class="left-16 mt-[50px] max-w-[540px] max-h-[580px] hidden lg:block"
+        src="/src//assets/images/camera-man-image.svg"
+        alt="A happy traveller"
+      >
+      <div class=" flex flex-col gap-5 pt-[60px]">
         <p class=" text-[20px] leading-5 font-semibold text-orange">Our Experience</p>
-        <p class="main-header">Our Stories Have Adventures</p>
-        <p class=" pb-5 pr-16">
+        <p class="main-header leading-[66px]">Our Stories Have Adventures</p>
+        <p class="text-[16px] leading-[26px] pb-5 pr-16">
           We are experienced in bringing adventures to stay their journey,
           with all outdoor destinations in the world as our specialties.
           Start your adventure now! Nature has already called you!
         </p>
-        <div class="flex gap-5">
+        <div class="flex flex-wrap justify-center gap-5">
           <PopularDestinationCard title="12K+" text="Succes Journey" />
           <PopularDestinationCard title="16+" text="Awards Winning" />
           <PopularDestinationCard title="20+" text="Years Of Experience" />
@@ -168,14 +172,14 @@
       <p class="main-header leading-[66px] pt-9">Top Destinations</p>
       <p class=" pt-4">Sost Brilliant reasons Entrada should be your one-stop-shop!</p>
     </div>
-    <div class="flex gap-[14px] mx-0 max-w-[600px]">
+    <div class="flex flex-wrap gap-[14px] mx-0 max-w-[600px]">
       <AppSectionButton class="font-poppins px-5 py-[10px]" content="London" />
       <AppSectionButton class="font-poppins px-5 py-[10px]" content="Bangkok" />
       <AppSectionButton class="font-poppins px-5 py-[10px]" content="England" />
       <AppSectionButton class="font-poppins px-5 py-[10px]" content="Singapore" />
       <AppSectionButton class="font-poppins px-5 py-[10px]" content="Italy" />
     </div>
-    <div class="flex gap-[30px] mt-[50px]">
+    <div class="flex flex-wrap justify-center gap-[30px] mt-[50px]">
       <div class="flex flex-col gap-[26px]">
         <TopDestinationCard
           width="270px"
@@ -233,12 +237,12 @@
     </div>
   </section>
 
-  <section class=" app-container flex flex-col items-center py-[66px] mt-10">
+  <section class="app-container flex flex-col items-center py-[66px] mt-10">
     <div class="flex gap-[175px] items-center">
-      <div class="bg-peach-light w-full h-full rounded-[245px] ml-[65px]">
+      <div class="bg-peach-light w-full h-full rounded-[245px] ml-[65px] hidden md:block">
         <img
           src="./assets/images/customer-image.svg"
-          class="w-full h-full object-cover rounded-[245px]"
+          class="max-w-[390px] max-h-[539px] object-cover rounded-[245px]"
           alt="Happy Customer Image"
         >
       </div>
@@ -279,7 +283,7 @@
     </div>
   </section>
   <footer class="app-container mt-[15px] py-20">
-    <div class="flex gap-[275px]">
+    <div class="flex gap-10 md:gap-32 lg:gap-[300px] xl:gap-[275px]">
       <div class="flex flex-col">
         <a class="min-w-[fit-content]" href="/">
           <img class="h-full w-full" src="/src/assets/images/salty-logo.svg" alt="Salty logo">
@@ -291,7 +295,7 @@
           <a href=""><IconTwitter /></a>
         </div>
       </div>
-      <div class="flex gap-28 pb-1">
+      <div class="flex gap-10 xl:gap-28 pb-1">
         <div class="flex flex-col">
           <p class="footer__main-header pb-[22px]">Resources</p>
           <a class="footer__text" href="">Download</a>
@@ -359,8 +363,8 @@ import IconFaceBook from './components/icons/icons-social-medias/IconFaceBook.vu
 
 .menu-container {
   scroll-snap-type: x mandatory;
-  @apply flex gap-[30px] mx-auto w-[100px] sm:w-[290px] md:w-[300px] lg:w-[600px] xl:w-[1170px] overflow-x-auto pb-5
-  lg:snap-none mr-10 xl:mr-[380px] lg:mr-[100px] md:mr-[100px]
+  @apply flex gap-[30px] mx-auto w-[100px] sm:w-[290px] md:w-[300px] lg:w-[600px] xl:w-[1170px] overflow-x-auto
+  lg:snap-none mr-10 xl:mr-[380px] lg:mr-[100px] md:mr-[100px] pb-2 lg:pb-0
 }
 
 .menu-container > * {
@@ -369,7 +373,7 @@ import IconFaceBook from './components/icons/icons-social-medias/IconFaceBook.vu
 
 .carrousel-container {
   scroll-snap-type: x mandatory;
-  @apply flex gap-[30px] mx-auto w-[400px] xl:w-[1170px] overflow-x-auto pb-5
+  @apply flex gap-[30px] mx-auto w-full overflow-x-auto pb-5
 }
 .carrousel-container > * {
   scroll-snap-align: center;

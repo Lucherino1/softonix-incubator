@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col pl-[26px] text-left bg-white flex-1 py-[30px] rounded-[14px]">
+  <div class="flex flex-col pl-[26px] pr-[5px] text-left bg-white flex-1 py-[30px] rounded-[14px] max-w-[165px]">
     <p class=" text-[46px] leading-[46px] font-semibold text-orange">{{ title }}</p>
     <p class=" text-xl text-start max-w-min text-gray-light pt-[18px]">{{ text }}</p>
   </div>
