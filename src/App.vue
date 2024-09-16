@@ -1,10 +1,34 @@
 <template>
   <header class="flex flex-col justify-center items-center w-full pb-14">
-    <nav class="app-container flex items-center h-120px max-h-[120px] lg:h-[100px] lg:max-h-[100px]">
+    <nav class="app-container flex items-center min-h-[100px] h-100px text-nowrap">
       <a class=" mr-[20px] xl:mr-[72px] min-w-[fit-content]" href="/">
         <img class="h-full w-full" src="/src/assets/images/salty-logo.svg" alt="Salty logo">
       </a>
-      <NavBar class=" xl:mr-[380px] lg:mr-[200px] md:mr-[100px]" />
+      <div
+        class="font-poppins font-normal text-16[px] leading-4 text-blue-dark
+        menu-container"
+      >
+        <ul class="flex gap-[36px]">
+          <li
+            class="nav__selected-list-item relative cursor-pointer pb-[0.5rem]
+             hover:text-orange transition duration-300"
+          >
+            Home
+          </li>
+          <li class="relative cursor-pointer pb-[0.5rem] hover:text-orange transition duration-300">
+            About us
+          </li>
+          <li class="relative cursor-pointer pb-[0.5rem] hover:text-orange transition duration-300">
+            Destinations
+          </li>
+          <li class="relative cursor-pointer pb-[0.5rem] hover:text-orange transition duration-300">
+            Tours
+          </li>
+          <li class="relative cursor-pointer pb-[0.5rem] hover:text-orange transition duration-300">
+            Blog
+          </li>
+        </ul>
+      </div>
       <button
         class="group flex items-center ml-auto gap-[6px] border leading-4 left-0
          hover:bg-orange hover:text-white transition duration-300
@@ -14,16 +38,25 @@
         <IconBooking class=" group-fill-current text-orange group-hover:text-white transition duration-300" />
       </button>
     </nav>
-    <div class="app-container flex gap-[60px] pt-[10px]">
-      <div class="">
-        <h1 class="pt-[75px] font-sen font-bold text-[84px] leading-[86px] text-gray-dark">
+    <div class="app-container flex flex-col lg:flex-row justify-between pt-[10px]">
+      <div class="pb-1 lg:pb-[30px] order-2 lg:order-1">
+        <h1
+          class="pt-1 lg:pt-[65px] font-sen font-bold text-center lg:text-left
+          text-[32px] lg:text-[64px] xl:text-[84px] lg:leading-[86px] text-gray-dark"
+        >
           Discover the Best Lovely Places
         </h1>
-        <p class="pt-[26px] pb-11 pr-[70px] text-18px text-gray leading-7">
+        <p
+          class="pt-[26px] pb-5 md:pb-11 lg:pr-[70px] text-[14px] lg:text-[18px]
+          text-center lg:text-left text-gray lg:leading-7"
+        >
           Plan and book your perfect trip with expert advice, travel tips,
           destination information and inspiration from us.
         </p>
-        <div class="flex bg-white absolute py-4 pl-[28px] pr-[20px] rounded-[38px] items-center">
+        <div
+          class="flex mx-auto lg:mx-0 lg:justify-start bg-white max-w-[500px]
+          py-[11px] pl-[28px] pr-[20px] rounded-[38px] items-center"
+        >
           <div class="pr-[34px] border-r border-r-gray-ultra-light py-[4px]">
             <p class="font-medium text-gray-dark text-[18px] leading-4">Where</p>
             <div class="flex gap-[26px] items-center max-w-[140px] mt-[8px]">
@@ -43,7 +76,11 @@
           </button>
         </div>
       </div>
-      <img class="" src="/src/assets/images/hero-image.svg" alt="Header img">
+      <img
+        class="max-w-[534px] max-h-[555px] mx-auto lg:mx-0 order-1 lg:order-2 object-cover"
+        src="/src/assets/images/hero-image.svg"
+        alt="Header img"
+      >
     </div>
   </header>
 
@@ -295,7 +332,6 @@ import IconCalendar from './components/icons/IconCalendar.vue'
 import IconPoint from './components/icons/IconPoint.vue'
 import IconBooking from './components/icons/icons-for-buttons/IconBooking.vue'
 import IconMagnifyingGlass from './components/icons/icons-for-buttons/IconMagnifyingGlass.vue'
-import NavBar from './components/NavBar.vue'
 import TourCard from './components/TourCard.vue'
 import TopDestinationCard from './components/TopDestinationCard.vue'
 import ClientFeedbackCard from './components/ClientFeedbackCard.vue'
@@ -306,9 +342,34 @@ import IconFaceBook from './components/icons/icons-social-medias/IconFaceBook.vu
 </script>
 
 <style scoped>
+.nav__selected-list-item {
+  position: relative;
+  padding-bottom: 0.375rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 12px;
+    height: 2px;
+    background-color: #f66f4d;
+  }
+}
+
+.menu-container {
+  scroll-snap-type: x mandatory;
+  @apply flex gap-[30px] mx-auto w-[100px] sm:w-[290px] md:w-[300px] lg:w-[600px] xl:w-[1170px] overflow-x-auto pb-5
+  lg:snap-none mr-10 xl:mr-[380px] lg:mr-[100px] md:mr-[100px]
+}
+
+.menu-container > * {
+  scroll-snap-align: center;
+}
+
 .carrousel-container {
   scroll-snap-type: x mandatory;
-  @apply flex gap-[30px] mx-auto xl:w-[1170px] overflow-x-auto pb-5
+  @apply flex gap-[30px] mx-auto w-[400px] xl:w-[1170px] overflow-x-auto pb-5
 }
 .carrousel-container > * {
   scroll-snap-align: center;
