@@ -57,7 +57,7 @@ body:not(.user-is-tabbing) *:focus {
 
 .app-container {
   margin: 0 auto;
-  @apply max-w-[1440px] px-[20px] lg:px-[40px] xl:px-[135px] 
+  @apply max-w-[1250px] px-[40px] w-full;
 }
 
 .app-container_large {
