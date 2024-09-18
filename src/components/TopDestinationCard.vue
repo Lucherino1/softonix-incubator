@@ -1,7 +1,8 @@
 <template>
   <div
     :style="{ width: width, height: height }"
-    class=" relative rounded-[20px] bg-gray-light cursor-pointer flex group"
+    class="relative rounded-[20px] bg-gray-light cursor-pointer flex group hover:shadow-lg overflow-hidden
+    transition-shadow duration-300"
   >
     <img :src="imgSrc" alt="Card Image" class="w-full h-full object-cover">
     <div
@@ -30,7 +31,3 @@ defineProps<{
   text: string
 }>()
 </script>
-
-<style lang="scss" scoped>
-
-</style>

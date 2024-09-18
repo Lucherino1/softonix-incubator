@@ -26,7 +26,11 @@ export default {
       poppins: ['Poppins', 'sans-serif'],
       sen: ['Sen', 'sans-serif']
     },
-    extend: {}
+    extend: {
+      boxShadow: {
+        'card-shadow': '0 4px 10px rgba(192, 188, 161, 0.22)'
+      }
+    }
   },
   plugins: []
 } satisfies Config

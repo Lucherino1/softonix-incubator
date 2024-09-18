@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col bg-white px-[30px] py-[30px] rounded-[14px]">
-    <p class=" text-lg leading-[30px] pr-1 pt-[2px] max-h-[170px] overflow-y-auto">
+    <p class="text-lg leading-[30px] pr-1 pt-[2px] max-h-[170px] overflow-y-auto">
       Salty helped me a lot in finding the best place for our first outdoor adventure trip.
       They responded very quickly and gave me a detailed account of the place—its history, as well as its best features.
     </p>
