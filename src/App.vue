@@ -57,7 +57,7 @@
           <img class="object-cover w-full h-auto" src="/src/assets/images/hero-image.svg" alt="Header image">
         </div>
         <p
-          class="pt-[26px] pb-5 md:pb-11 lg:pr-[65px] text-[16px] lg:text-[18px] self-center md:self-start
+          class="pt-[26px] pb-11 lg:pr-[65px] text-[16px] lg:text-[18px] self-center md:self-start
            text-justify text-gray lg:leading-7 max-w-[350px] md:max-w-[400px] lg:max-w-none"
         >
           Plan and book your perfect trip with expert advice, travel tips,
@@ -100,7 +100,7 @@
     </div>
   </header>
 
-  <section class="app-container flex flex-col justify-center pt-5 items-center mt-5 lg:mt-24 pb-8">
+  <section class="app-container flex flex-col justify-center pt-5 items-center lg:mt-24 pb-8">
     <div class="flex justify-between flex-col w-full">
       <div class="flex justify-between items-center">
         <p class="main-header">Categories</p>
@@ -121,7 +121,7 @@
     </div>
   </section>
 
-  <section id="about-us" class="app-container flex flex-col py-[50px] lg:mt-14">
+  <section id="about-us" class="app-container flex flex-col py-5 lg:py-[50px] lg:mt-14">
     <div class="flex gap-14 xl:gap-40">
       <div class="hidden lg:block">
         <img
@@ -188,7 +188,7 @@
     </div>
   </section>
 
-  <section id="destinations" class="app-container flex flex-col items-center mt-5 lg:mt-14 mb-10">
+  <section id="destinations" class="app-container flex flex-col items-center mt-1 lg:mt-14 mb-10">
     <div class="flex flex-col items-center justify-center mx-auto text-center pb-7">
       <p class="main-header leading-[66px] pt-9">Top Destinations</p>
       <p class="pt-4">Sost Brilliant reasons Entrada should be your one-stop-shop!</p>
