@@ -46,15 +46,18 @@
       </nav>
     </div>
     <div class="app-container flex flex-row gap-1 md:gap-5 lg:gap-[70px] pt-[10px]">
-      <div class="pb-1 lg:pb-[30px] flex-1">
+      <div class="flex flex-col flex-1 pb-1 lg:pb-[30px]">
         <h1
-          class="pt-1 lg:pt-[65px] font-sen font-bold tracking-normal
-          text-[32px] lg:text-[64px] xl:text-[84px] lg:leading-[86px] text-gray-dark"
+          class="pt-1 lg:pt-[65px] font-sen font-bold tracking-normal self-center md:self-start
+          text-[36px] lg:text-[64px] xl:text-[84px] lg:leading-[86px] text-gray-dark"
         >
           Discover the Best Lovely Places
         </h1>
+        <div class="flex justify-center items-center self-center md:hidden">
+          <img class="object-cover w-full h-auto" src="/src/assets/images/hero-image.svg" alt="Header image">
+        </div>
         <p
-          class="pt-[26px] pb-5 md:pb-11 lg:pr-[65px] text-[16px] lg:text-[18px]
+          class="pt-[26px] pb-5 md:pb-11 lg:pr-[65px] text-[16px] lg:text-[18px] self-center md:self-start
            text-justify text-gray lg:leading-7 max-w-[350px] md:max-w-[400px] lg:max-w-none"
         >
           Plan and book your perfect trip with expert advice, travel tips,
@@ -83,11 +86,11 @@
             </div>
           </div>
           <button class="bg-orange rounded-full min-w-[54px] min-h-[54px] flex justify-center items-center">
-            <IconMagnifyingGlass class="" />
+            <IconMagnifyingGlass />
           </button>
         </div>
       </div>
-      <div class="flex-1 justify-center items-center hidden md:block">
+      <div class="flex-1 justify-center items-center hidden md:flex">
         <img
           class="object-cover w-full h-auto"
           src="/src/assets/images/hero-image.svg"
@@ -98,15 +101,15 @@
   </header>
 
   <section class="app-container flex flex-col justify-center pt-5 items-center mt-5 lg:mt-24 pb-8">
-    <div class="flex justify-between items-start w-full">
-      <div>
-        <p class="main-header mb-6">Categories</p>
-        <p class="max-w-[370px]">
-          Here are lots of interesting destinations to visit,
-          but don’t be confused—they’re already grouped by category.
-        </p>
+    <div class="flex justify-between flex-col w-full">
+      <div class="flex justify-between items-center">
+        <p class="main-header">Categories</p>
+        <AppArrowBtns />
       </div>
-      <AppArrowBtns />
+      <p class="max-w-[370px] mt-6">
+        Here are lots of interesting destinations to visit,
+        but don’t be confused—they’re already grouped by category.
+      </p>
     </div>
     <div class="flex gap-[30px] mt-[60px] carrousel-container xl:snap-none">
       <CategoriesCard title="Beach" img-src="/src/assets/images/categories-images/beach.png" />
@@ -127,10 +130,10 @@
           alt="A happy traveller"
         >
       </div>
-      <div class="flex flex-col gap-5 pt-[60px]">
+      <div class="flex flex-col gap-5 pt-[30px] md:pt-[60px]">
         <p class="text-[20px] leading-5 font-semibold text-orange">Our Experience</p>
-        <p class="main-header leading-[66px]">Our Stories Have Adventures</p>
-        <p class="text-[16px] leading-[26px] pb-5 pr-16">
+        <p class="main-header leading-[40px] md:leading-[66px]">Our Stories Have Adventures</p>
+        <p class="text-[16px] leading-[26px] pb-5 sm:pr-16">
           We are experienced in bringing adventures to stay their journey,
           with all outdoor destinations in the world as our specialties.
           Start your adventure now! Nature has already called you!
@@ -144,10 +147,14 @@
     </div>
   </section>
 
-  <section id="tours" class="app-container flex flex-col py-[50px]">
-    <div class="flex items-center pb-[35px]">
-      <p class="main-header leading-[66px] flex-1 justify-start">Find Popular Destination</p>
-      <AppArrowBtns class="flex-1 justify-end" />
+  <section id="tours" class="app-container flex flex-col py-6 md:py-[50px]">
+    <div class="flex flex-col sm:flex-row items-center pb-[35px]">
+      <p
+        class="main-header leading-[40px] md:leading-[66px] flex-1 justify-start text-center sm:text-start"
+      >
+        Find Popular Destination
+      </p>
+      <AppArrowBtns class="pt-5 md:pt-0 flex-1 justify-end" />
     </div>
     <div class="carrousel-container">
       <TourCard
@@ -268,7 +275,7 @@
       </div>
       <div class="flex flex-col">
         <p class="feedback__header main-header pr-[70px] pb-[26px]">A customer said about us:</p>
-        <ClientFeedbackCard
+        <FeedbackCard
           review="Salty helped me a lot in finding the best place for our first outdoor adventure trip.
           They responded very quickly and gave me a detailed account of the place—its history,
            as well as its best features."
@@ -288,8 +295,8 @@
       <p class="font-semibold text-[40px] leading-10 text-gray-dark pb-4">
         Sign up to our newsletter
       </p>
-      <p class=" leading-[26px] pb-10 text-gray">
-        Reciev latest news, update, and many other things <br> every week.
+      <p class="leading-[26px] pb-10 text-gray mx-2">
+        Reciev latest news, update, and many other things <br class="hidden lg:inline"> every week.
       </p>
       <div class="bg-white py-[10px] flex justify-between pr-3 pl-[26px] rounded-xl">
         <input class="sm:pr-[160px] text-[14px] leading-[14px]" type="email" placeholder="Enter Your email address">
@@ -302,10 +309,10 @@
       </div>
     </div>
   </section>
-  <footer class="app-container mt-[15px] py-20">
+  <footer class="app-container mt-[15px] py-14 md:py-20">
     <div class="flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-32 lg:gap-[300px] xl:gap-[275px]">
-      <div class="flex flex-col">
-        <a class="w-[98px] h-[35px] hidden md:inline-block" href="/">
+      <div class="flex flex-col order-2 md:order-1">
+        <a class="w-[98px] h-[35px] hidden md:block" href="/">
           <img class="h-auto w-full" src="/src/assets/images/salty-logo.svg" alt="Salty logo">
         </a>
         <p class="pt-5 pb-10 hidden md:inline-block">Enjoy the touring <br> with Salty</p>
@@ -315,30 +322,30 @@
           <a href=""><IconTwitter /></a>
         </div>
       </div>
-      <div class="flex flex-wrap gap-10 xl:gap-28 pb-1">
+      <div class="flex flex-wrap gap-10 xl:gap-28 pb-1 order-1 md:order-2">
         <div class="flex flex-col">
-          <p class="footer__main-header pb-[22px]">Resources</p>
+          <p class="footer__main-header">Resources</p>
           <a class="footer__link" href="">Download</a>
           <a class="footer__link" href="">Help Center</a>
           <a class="footer__link" href="">Guide Book</a>
           <a class="footer__link" href="">App Directory</a>
         </div>
         <div class="flex flex-col">
-          <p class="footer__main-header pb-[22px]">Travellers</p>
+          <p class="footer__main-header">Travellers</p>
           <a class="footer__link" href="">Why Travellers</a>
           <a class="footer__link" href="">Enterprice</a>
           <a class="footer__link" href="">Customer Stories</a>
           <a class="footer__link" href="">Instagram post</a>
         </div>
         <div class="flex flex-col">
-          <p class="footer__main-header pb-[22px]">Company</p>
+          <p class="footer__main-header">Company</p>
           <a class="footer__link" href="">Travelling</a>
           <a class="footer__link" href="">About Locato</a>
           <a class="footer__link" href="">Success</a>
           <a class="footer__link" href="">Information</a>
         </div>
         <div class="flex flex-col">
-          <p class="footer__main-header pb-[22px]">Get App</p>
+          <p class="footer__main-header">Get App</p>
           <a class="footer__link" href="">App Store</a>
           <a class="footer__link" href="">Google Play Store</a>
         </div>
@@ -358,7 +365,7 @@ import IconBooking from './components/icons/icons-for-buttons/IconBooking.vue'
 import IconMagnifyingGlass from './components/icons/icons-for-buttons/IconMagnifyingGlass.vue'
 import TourCard from './components/TourCard.vue'
 import TopDestinationCard from './components/TopDestinationCard.vue'
-import ClientFeedbackCard from './components/ClientFeedbackCard.vue'
+import FeedbackCard from './components/FeedbackCard.vue'
 import IconInstagram from './components/icons/icons-social-medias/IconInstagram.vue'
 import IconTwitter from './components/icons/icons-social-medias/IconTwitter.vue'
 import IconFacebook from './components/icons/icons-social-medias/IconFacebook.vue'
@@ -416,7 +423,7 @@ import IconMenu from './components/icons/IconMenu.vue'
   font-weight: 500;
   font-size: 18px;
   line-height: 18px;
-  @apply text-gray-dark capitalize
+  @apply text-gray-dark capitalize pb-[22px]
 }
 .footer__link {
   font-size: 14px;

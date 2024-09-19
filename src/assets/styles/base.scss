@@ -48,7 +48,7 @@ img, svg {
 }
 
 *::-webkit-scrollbar-thumb {
-  @apply bg-gray
+  @apply bg-gray-light
 }
 
 *::-webkit-scrollbar-track {
@@ -62,7 +62,7 @@ body:not(.user-is-tabbing) *:focus {
 
 .app-container {
   margin: 0 auto;
-  @apply max-w-[1250px] px-[10px] sm:px-[30px] md:px-[40px] w-full;
+  @apply max-w-[1250px] px-[16px] sm:px-[30px] md:px-[40px] w-full;
 }
 
 .main-header {
