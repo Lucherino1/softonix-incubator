@@ -29,6 +29,8 @@ a {
   &:focus {
     user-select: none;
   }
+  
+  @apply hover:text-orange transition duration-300
 }
 
 img, svg {

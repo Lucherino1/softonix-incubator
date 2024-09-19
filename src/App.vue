@@ -378,7 +378,6 @@ import IconMenu from './components/icons/IconMenu.vue'
 .nav__list-item {
   position: relative;
   padding-bottom: 0.5rem;
-  @apply hover:text-orange transition duration-300
 }
 .nav__list-item--selected {
   position: relative;
@@ -429,7 +428,7 @@ import IconMenu from './components/icons/IconMenu.vue'
   font-size: 14px;
   font-weight: 400;
   line-height: 34px;
-  @apply text-gray-slate hover:text-orange transition-colors duration-300
+  @apply text-gray-slate hover:text-orange
 }
 
 </style>
