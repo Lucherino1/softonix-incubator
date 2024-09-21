@@ -1,8 +1,26 @@
 <template>
   <div class="max-w-[1440px] p-6">
-    <h3 class="font-medium m-0">Contact list</h3>
+    <div class="flex gap-5 items-center">
+      <h3 class="font-medium m-0">Contact list</h3>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white text-sm font-medium
+         rounded p-2 inline-flex items-center justify-center"
+        @click="createNewContact"
+      >
+        <IconPlus class="w-5 h-5 mr-2" />
+        Add Contact
+      </button>
+    </div>
 
     <div class="contact-list grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+      <ContactItem
+        v-for="(newContact, index) in newContacts"
+        :key="newContact.id"
+        is-creation-mode
+        :contact="newContact"
+        @delete="deleteNewContact(index)"
+        @save="saveNewContact($event, index)"
+      />
       <ContactItem
         v-for="(contact, index) in contacts"
         :key="contact.id"
@@ -18,6 +36,7 @@
 import { ref } from 'vue'
 import type { IContact } from '@/types'
 import ContactItem from '@/components/ContactItem.vue'
+import IconPlus from '@/components/icons/IconPlus.vue'
 
 const contacts = ref<IContact[]>([
   {
@@ -41,10 +60,38 @@ const contacts = ref<IContact[]>([
 ])
 
 function deleteContact (index: number) {
-  contacts.value.splice(index, 1)
+  const isConfirmed = confirm('Are you sure you want to delete this contact?')
+  if (isConfirmed) {
+    contacts.value.splice(index, 1)
+  }
 }
 
 function onContactSave (contact: IContact, index: number) {
   contacts.value[index] = { ...contact }
 }
+
+const newContacts = ref<IContact[]>([])
+
+function createNewContact () {
+  const newContactId = Date.now() + Math.floor(Math.random() * 1000)
+  newContacts.value.unshift({
+    id: newContactId,
+    name: '',
+    description: '',
+    image: ''
+  })
+}
+
+function deleteNewContact (index: number) {
+  newContacts.value.splice(index, 1)
+}
+
+function saveNewContact (contact: IContact, index: number) {
+  contacts.value.unshift({
+    ...newContacts.value[index],
+    ...contact
+  })
+  newContacts.value.splice(index, 1)
+}
+
 </script>
