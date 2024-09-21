@@ -10,12 +10,14 @@
               type="text"
               placeholder="Name"
               class="contact-card__input font-medium"
+              @keyup.enter="onSave()"
             >
             <input
               v-model="localContact.description"
               type="text"
               placeholder="Description"
-              class="contact-card__input"
+              class="contact-card__input mt-1"
+              @keyup.enter="onSave()"
             >
           </template>
 
@@ -39,7 +41,8 @@
             v-model="localContact.image"
             type="text"
             placeholder="Image URL"
-            class="contact-card__input text-sm"
+            class="contact-card__input text-sm mt-[-4px]"
+            @keyup.enter="onSave()"
           >
         </template>
         <template v-if="editMode || isCreationMode">
@@ -79,23 +82,23 @@
     </div>
 
     <div class="flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light">
-      <div class="flex items-center justify-center flex-1 py-4 hover:text-gray">
+      <button class="flex items-center justify-center flex-1 py-4 hover:text-gray">
         <IconEnvelope />
         <span class="ml-3">Email</span>
-      </div>
-      <div
+      </button>
+      <button
         class="flex items-center justify-center flex-1 py-4 border-l
             border-gray-ultra-light hover:text-gray"
       >
         <IconPhone />
         <span class="ml-3">Call</span>
-      </div>
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, nextTick, computed } from 'vue'
+import { ref, nextTick, computed, onMounted } from 'vue'
 import type { IContact } from '@/types'
 import IconEnvelope from '@/components/icons/IconEnvelope.vue'
 import IconPhone from '@/components/icons/IconPhone.vue'
@@ -151,10 +154,14 @@ function onSave () {
     editMode.value = false
   }
 }
+
+onMounted(() => {
+  inputRef.value?.focus()
+})
 </script>
 
 <style lang="scss" scoped>
 .contact-card__input {
-  @apply block w-full
+  @apply block w-full border-b border-b-gray-light box-border max-h-[20px]
 }
 </style>
