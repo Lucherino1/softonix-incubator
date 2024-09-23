@@ -27,7 +27,6 @@
         :contact="contact"
         @delete="deleteContact(index)"
         @save="onContactSave($event, index)"
-        @removeAllNewContacts="removeAllNewContacts"
       />
     </div>
   </div>
@@ -93,9 +92,5 @@ function saveNewContact (contact: IContact, index: number) {
     ...contact
   })
   newContacts.value.splice(index, 1)
-}
-
-function removeAllNewContacts () {
-  newContacts.value = []
 }
 </script>
