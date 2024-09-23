@@ -7,6 +7,7 @@
             <input
               ref="inputRef"
               v-model="localContact.name"
+              required
               type="text"
               placeholder="Name"
               class="contact-card__input font-medium"
@@ -14,6 +15,7 @@
             >
             <input
               v-model="localContact.description"
+              required
               type="text"
               placeholder="Description"
               class="contact-card__input mt-1"
@@ -138,14 +140,18 @@ function cancelEditMode () {
 
 const isContactDataValid = computed(() => {
   const { name, description } = localContact.value
+  const hasUppercase = (str: string) => /[A-Z]/.test(str)
+  const wordsCount = (str: string) => str.trim().split(/\s+/).length
 
-  const hasUppercase = /[A-Z]/
-  const nameIsValid = !!name.trim() && hasUppercase.test(name) && name.length >= 5
+  const isValidName = (name: string) => {
+    return name.trim().length >= 5 && hasUppercase(name)
+  }
 
-  const countWords = description.trim().split(/\s+/).length
-  const descriptionIsValid = !!description.trim() && countWords >= 2 && description.length >= 20
+  const isValidDescription = (description: string) => {
+    return description.trim().length >= 20 && wordsCount(description) >= 2
+  }
 
-  return nameIsValid && descriptionIsValid
+  return isValidName(name) && isValidDescription(description)
 })
 
 function onSave () {
@@ -162,6 +168,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .contact-card__input {
-  @apply block w-full border-b border-b-gray-light box-border max-h-[20px]
+  @apply block w-full border-b border-b-gray-light box-border max-h-[20px] invalid:required:border-blue-400
 }
 </style>
