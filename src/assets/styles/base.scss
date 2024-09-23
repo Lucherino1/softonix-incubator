@@ -45,6 +45,10 @@ img, svg {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
 }
 
+// *::-webkit-search-cancel-button {
+//   display: none;
+// }
+
 body:not(.user-is-tabbing) *:focus {
   outline: none !important;
 }

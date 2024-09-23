@@ -8,11 +8,14 @@
       </template>
       Add Contact
     </AppButton>
+
+    <SearchInput v-model="searchQuery" />
+    {{ searchQuery }}
   </div>
 
   <div class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
     <ContactItem
-      v-for="contact in contacts"
+      v-for="contact in filteredContacts"
       :key="contact.id"
       class="cursor-pointer"
       :contact="contact"
@@ -30,12 +33,24 @@ import { useContactsStore } from '@/store'
 import ContactItem from '@/components/ContactItem.vue'
 import AppButton from '@/components/AppButton.vue'
 import IconPlus from '@/components/icons/IconPlus.vue'
+import SearchInput from '@/components/SearchInput.vue'
+import { computed, ref } from 'vue'
+import type { IContact } from '@/types'
 
 const router = useRouter()
 
 const contactsStore = useContactsStore()
 const { contacts } = storeToRefs(contactsStore)
 const { updateContact, deleteContact } = contactsStore
+
+const searchQuery = ref('')
+
+const filteredContacts = computed<IContact[]>(() => {
+  return contacts.value.slice().filter(contact =>
+    contact.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    contact.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
+})
 
 function createNewContact () {
   router.push({ name: 'upsertContact', params: { contactId: 'new' } })
