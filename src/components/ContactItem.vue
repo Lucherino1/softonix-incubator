@@ -31,7 +31,8 @@
         <template v-if="!isCreationMode">
           <img
             class="w-[40px] h-[40px] object-cover ml-2 rounded-full shrink-0"
-            :src="contact.image" alt="contact-logo"
+            :src="contact.image"
+            alt="contact-logo"
           >
         </template>
       </div>
@@ -40,7 +41,7 @@
           <input
             v-model="localContact.image"
             type="text"
-            placeholder="Image URL"
+            placeholder="Image link"
             class="contact-card__input text-sm mt-[-4px]"
             @keyup.enter="onSave()"
           >
@@ -56,7 +57,7 @@
           <button
             class="text-blue-500 font-medium text-xs hover:underline"
             :class="'disabled:text-gray disabled:pointer-events-none'"
-            :disabled="!validateContactData"
+            :disabled="!isContactDataValid"
             @click="onSave"
           >
             Save
@@ -135,9 +136,8 @@ function cancelEditMode () {
   }
 }
 
-const validateContactData = computed(() => {
-  const name = localContact.value.name
-  const description = localContact.value.description
+const isContactDataValid = computed(() => {
+  const { name, description } = localContact.value
 
   const hasUppercase = /[A-Z]/
   const nameIsValid = !!name.trim() && hasUppercase.test(name) && name.length >= 5
@@ -149,7 +149,7 @@ const validateContactData = computed(() => {
 })
 
 function onSave () {
-  if (validateContactData.value) {
+  if (isContactDataValid.value) {
     emit('save', localContact.value)
     editMode.value = false
   }
