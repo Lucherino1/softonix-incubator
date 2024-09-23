@@ -1,5 +1,8 @@
 <template>
-  <div class="rounded-lg bg-white shadow relative">
+  <div
+    class="rounded-lg bg-white shadow relative'"
+    :class="[{ 'h-auto': isCreationMode, 'max-h-[150px]': !editMode && !isCreationMode }]"
+  >
     <div class="p-6 pb-2">
       <div class="flex">
         <div class="flex-grow text-sm truncate">
@@ -35,6 +38,7 @@
             class="w-[40px] h-[40px] object-cover ml-2 rounded-full shrink-0"
             :src="contact.image"
             alt="contact-logo"
+            @error="setDefaultImage"
           >
         </template>
       </div>
@@ -48,6 +52,7 @@
             @keyup.enter="onSave()"
           >
         </template>
+
         <template v-if="editMode || isCreationMode">
           <button
             class="text-blue-500 font-medium text-xs hover:underline"
@@ -58,7 +63,7 @@
 
           <button
             class="text-blue-500 font-medium text-xs hover:underline"
-            :class="'disabled:text-gray disabled:pointer-events-none'"
+            :class="'disabled:text-gray disabled:cursor-not-allowed disabled:hover:no-underline'"
             :disabled="!isContactDataValid"
             @click="onSave"
           >
@@ -82,6 +87,12 @@
           </button>
         </template>
       </div>
+      <p v-if="!isValidName && localContact.name" class="text-red-500 text-xs mt-2">
+        * Name must be at least 5 characters long and include at least one uppercase letter
+      </p>
+      <p v-if="!isValidDescription && localContact.description" class="text-red-500 text-xs mt-2">
+        * Description must be at least 20 characters long and contain at least two words
+      </p>
     </div>
 
     <div class="flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light">
@@ -90,8 +101,7 @@
         <span class="ml-3">Email</span>
       </button>
       <button
-        class="flex items-center justify-center flex-1 py-4 border-l
-            border-gray-ultra-light hover:text-gray"
+        class="flex items-center justify-center flex-1 py-4 border-l border-gray-ultra-light hover:text-gray"
       >
         <IconPhone />
         <span class="ml-3">Call</span>
@@ -111,7 +121,7 @@ const props = defineProps<{
   isCreationMode?: boolean
 }>()
 
-const emit = defineEmits(['delete', 'save'])
+const emit = defineEmits(['delete', 'save', 'removeAllNewContacts'])
 
 const inputRef = ref<HTMLInputElement>()
 
@@ -124,6 +134,7 @@ const localContact = ref<Omit<IContact, 'id'>>({
 const editMode = ref(false)
 
 async function triggerEditMode () {
+  emit('removeAllNewContacts')
   editMode.value = true
   localContact.value = { ...props.contact }
   await nextTick()
@@ -135,24 +146,29 @@ function cancelEditMode () {
     emit('delete')
   } else {
     editMode.value = false
+    localContact.value = { ...props.contact }
   }
 }
 
-const isContactDataValid = computed(() => {
-  const { name, description } = localContact.value
-  const hasUppercase = (str: string) => /[A-Z]/.test(str)
-  const wordsCount = (str: string) => str.trim().split(/\s+/).length
-
-  const isValidName = (name: string) => {
-    return name.trim().length >= 5 && hasUppercase(name)
-  }
-
-  const isValidDescription = (description: string) => {
-    return description.trim().length >= 20 && wordsCount(description) >= 2
-  }
-
-  return isValidName(name) && isValidDescription(description)
+const isValidName = computed(() => {
+  const name = localContact.value.name.trim()
+  const hasUppercase = /[A-Z]/.test(name)
+  return name.length >= 5 && hasUppercase
 })
+
+const isValidDescription = computed(() => {
+  const description = localContact.value.description.trim()
+  const wordsCount = description.split(/\s+/).length
+  return description.length >= 20 && wordsCount >= 2
+})
+
+const isContactDataValid = computed(() => isValidName.value && isValidDescription.value)
+
+const defaultImageLink = 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png'
+
+function setDefaultImage (event: Event) {
+  (event.target as HTMLImageElement).src = defaultImageLink
+}
 
 function onSave () {
   if (isContactDataValid.value) {
