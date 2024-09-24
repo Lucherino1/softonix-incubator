@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import type { IContact } from '@/types'
 
 export const useContactsStore = defineStore('contactsStore', () => {
-  const roles = ref<string[]>(['Developer', 'Paradigm Engineer', 'Product Officer', 'Manager'])
+  const rolesList = ref<string[]>(['User', 'Paradigm Engineer', 'Product Officer', 'Developer'])
 
   const contacts = ref<IContact[]>([
     {
@@ -44,7 +44,7 @@ export const useContactsStore = defineStore('contactsStore', () => {
   }
 
   return {
-    roles,
+    rolesList,
     contacts,
     addContact,
     deleteContact,
