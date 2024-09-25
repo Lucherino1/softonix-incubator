@@ -1,25 +1,42 @@
 <template>
   <div ref="dropdownContainer" class="relative">
     <button
-      class="dropdown__button bg-white border border-white hover:border-gray text-gray-medium
-       rounded-md p-1 pr-20 w-48 overflow-x-auto whitespace-nowrap py-2 shadow-sm"
+      class="dropdown__button bg-white border border-white hover:border-blue-500 text-gray-medium
+       rounded-md p-1 pr-20 w-56 overflow-x-auto whitespace-nowrap py-2 shadow-sm focus:border-blue-500"
       :class="{ 'border-blue-500 hover:border-blue-500': isDropdownVisible }"
       @click="toggleDropdown"
     >
-      <p v-if="modelValue.length === 0">Select occupation</p>
+      <div v-if="modelValue.length === 0">
+        <div class="flex w-full gap-10 items-center">
+          <p>Select occupation</p>
+          <span
+            :class="{
+              'rotate-180 transition-transform duration-200 ease-in-out': isDropdownVisible,
+              'rotate-0 transition-transform duration-200 ease-in-out': !isDropdownVisible
+            }"
+          >
+            <IconDropdown />
+          </span>
+        </div>
+      </div>
       <div v-else>
         <div
-          v-for="model in modelValue" :key="model"
           class="inline-flex items-center mr-1 bg-gray-light px-2 py-1 rounded-md h-[25px]"
         >
-          <span class="mr-1">{{ model }}</span>
+          <span class="mr-1">{{ modelValue[0] }}</span>
           <span
             class="inline-flex items-center justify-center w-4 h-4 rounded-full
             transition-colors duration-300 hover:bg-gray hover:text-white ml-1 cursor-pointer"
-            @click.stop="handleOptionClick(model)"
+            @click.stop="handleOptionClick(modelValue[0])"
           >
             <IconX class="w-3 h-3 text-current" />
           </span>
+        </div>
+        <div
+          v-if="modelValue.length > 1"
+          class="inline-flex items-center mr-1 bg-gray-light px-2 py-1 rounded-md h-[25px]"
+        >
+          <span class="mr-1">+{{ modelValue.length - 1 }}</span>
         </div>
       </div>
     </button>
@@ -27,7 +44,7 @@
       <div
         v-if="isDropdownVisible"
         class="absolute rounded-sm pt-2 pb-2 bg-white shadow-lg border border-gray-ultra-light
-       mt-2 w-48 max-h-60 overflow-y-auto z-50"
+       mt-2 w-56 max-h-60 overflow-y-auto z-50"
       >
         <div class="flex flex-col">
           <div
@@ -36,7 +53,7 @@
             :class="{'text-blue-500': modelValue.includes(option)}"
             @click="handleOptionClick(option)"
           >
-            <span class="flex-1">{{ option }}</span>
+            <span class="flex-1 truncate">{{ option }}</span>
             <div v-if="modelValue.includes(option)" class="absolute inset-y-0 right-2 flex items-center">
               <IconCheckMark class="w-3 h-3 text-blue-500" />
             </div>
@@ -51,12 +68,13 @@
 import { ref, onMounted } from 'vue'
 import IconCheckMark from '@/components/icons/IconCheckMark.vue'
 import IconX from '@/components/icons/IconX.vue'
-
-const modelValue = defineModel<string[]>({ required: true })
+import IconDropdown from './icons/IconDropdown.vue'
 
 const props = defineProps<{
   options: string[]
 }>()
+
+const modelValue = defineModel<string[]>({ required: true })
 
 const isDropdownVisible = ref(false)
 const dropdownContainer = ref<HTMLElement | null>(null)

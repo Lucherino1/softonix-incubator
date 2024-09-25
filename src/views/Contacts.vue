@@ -1,11 +1,13 @@
 <template>
-  <div class="flex items-center gap-4">
+  <div class="flex items-center gap-4 max-h-[42px]">
     <h3 class="font-medium m-0">Contact list</h3>
 
-    <AppSortSelection v-model="selectedSortOption" />
+    <AppSortSelection v-model="selectedSortOption">
+      <template #icon><IconSorting /></template>
+    </AppSortSelection>
     <AppSearchInput v-model="searchQuery" :search-results="searchResults" />
     <AppMultiSelect v-model="selectedFilterOptions" :options="rolesList" />
-    <AppButton class=" self-center" @click="createNewContact">
+    <AppButton @click="createNewContact">
       <template #icon>
         <IconPlus class="w-5 h-5" />
       </template>
@@ -39,6 +41,7 @@ import { computed, ref } from 'vue'
 import type { IContact } from '@/types'
 import AppMultiSelect from '@/components/AppMultiSelect.vue'
 import AppSortSelection from '@/components/AppSortSelection.vue'
+import IconSorting from '@/components/icons/IconSorting.vue'
 
 const router = useRouter()
 const contactsStore = useContactsStore()
@@ -81,6 +84,7 @@ function sortContacts (contacts: IContact[]) {
 const filteredContacts = computed<IContact[]>(() => {
   const searchedContacts = searchContacts()
   const matchesRoles = filterByRoles(searchedContacts)
+  console.log(sortContacts(matchesRoles))
   return sortContacts(matchesRoles)
 })
 

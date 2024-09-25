@@ -103,7 +103,8 @@ const inputRef = ref<HTMLInputElement>()
 const localContact = ref<Omit<IContact, 'id'>>({
   name: '',
   description: '',
-  image: ''
+  image: '',
+  role: 'User'
 })
 
 const nameAbbrv = computed(() => {
