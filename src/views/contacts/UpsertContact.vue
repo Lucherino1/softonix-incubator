@@ -11,17 +11,17 @@
 
       <template #footer>
         <div class="px-6 pb-6 mt-2 flex gap-3">
-          <AppButton class="flex-auto" @click="$router.back">
+          <AppButton class="flex-auto mr-2" @click="$router.back">
             Cancel
           </AppButton>
 
-          <AppButton v-if="currentContact" class="flex-auto" @click="onDelete">
+          <AppButton v-if="currentContact" class="flex-auto mr-2" @click="onDelete">
             Delete
           </AppButton>
 
           <AppButton class="flex-auto" :disabled="!isFormValid" @click="onSave">
             <template #icon>
-              <IconPlus class="w-5 h-5" />
+              <IconPlus class="w-5 h-5 mr-2" />
             </template>
 
             Save

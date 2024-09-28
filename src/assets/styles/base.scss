@@ -37,7 +37,7 @@ img, svg {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #0f172a;
+  @apply bg-gray
 }
 
 *::-webkit-scrollbar-track {

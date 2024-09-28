@@ -224,6 +224,7 @@
     "useLink": true,
     "useModel": true,
     "useTemplateRef": true,
-    "jobOpeningsService": true
+    "jobOpeningsService": true,
+    "useJobOpeningsStore": true
   }
 }

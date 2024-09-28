@@ -71,6 +71,7 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useGlobalProperties: typeof import('../src/composables/global-properties')['useGlobalProperties']
   const useId: typeof import('vue')['useId']
+  const useJobOpeningsStore: typeof import('../src/views/job-openings/job-openings.store')['useJobOpeningsStore']
   const useLink: typeof import('vue-router')['useLink']
   const useModel: typeof import('vue')['useModel']
   const useRoute: typeof import('vue-router')['useRoute']

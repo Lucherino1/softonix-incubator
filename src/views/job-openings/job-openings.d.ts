@@ -10,3 +10,8 @@ interface IJobOpening {
   isClosed: boolean
   url: string
 }
+
+interface IDepartmentsWithJobOpenings {
+  name: string
+  jobs: IJobOpening[]
+}

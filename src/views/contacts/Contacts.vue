@@ -1,15 +1,12 @@
 <template>
-  <div class="flex items-center gap-4">
-    <h3 class="font-medium m-0">Contact list</h3>
-
+  <div class="flex items-center">
     <AppButton @click="createNewContact">
       <template #icon>
-        <IconPlus class="w-5 h-5" />
+        <IconPlus class="w-4 h-4 mr-2" />
       </template>
       Add Contact
     </AppButton>
   </div>
-
   <div class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
     <ContactItem
       v-for="contact in contacts"
