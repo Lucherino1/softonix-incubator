@@ -22,7 +22,9 @@ declare module 'vue' {
     IconPhone: typeof import('./../src/components/icons/IconPhone.vue')['default']
     IconPlus: typeof import('./../src/components/icons/IconPlus.vue')['default']
     IconX: typeof import('./../src/components/icons/IconX.vue')['default']
+    LazyLoadObserver: typeof import('./../src/components/LazyLoadObserver.vue')['default']
     MenuList: typeof import('./../src/components/MenuList.vue')['default']
+    Observer: typeof import('./../src/components/Observer.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

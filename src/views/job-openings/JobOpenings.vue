@@ -1,7 +1,7 @@
 <template>
   <div class="w-full pt-16 bg-white">
     <div class="w-full border-y-2 border-gray-ultra-light bg-gray-light">
-      <div class="px-3 h-screen overflow-y-auto w-2/5 bg-white">
+      <div class="px-3 h-screen overflow-y-auto w-[45%] bg-white">
         <div class="border-2 border-t-0 mb-7 p-2 border-gray-ultra-light text-gray text-sm">
           <div class="flex justify-between items-center mb-3 text-base">
             <div class="flex justify-start items-center gap-3">
@@ -20,11 +20,11 @@
             <p>Showing {{ countJobOpenings }} job openings</p>
           </div>
           <div class="border-t-2 border-gray-ultra-light">
-            <DepartmentJobs
-              v-for="dep in departmentsWithJobOpenings"
-              :key="dep.name"
-              :department="dep"
-            />
+            <template v-for="dep in departmentsWithJobOpenings" :key="dep.name">
+              <Observer :removeIfInvisible="false">
+                <DepartmentJobs v-if="dep.jobs.length" :department="dep" />
+              </Observer>
+            </template>
           </div>
         </div>
       </div>
@@ -67,27 +67,20 @@ const filteredDepartments = computed(() => {
 
   jobOpenings.forEach(job => {
     if (job.departments.length === 0) {
-      usedDepartments.add('Other')
+      usedDepartments.add('other')
     } else {
       job.departments.forEach(dep => usedDepartments.add(dep))
     }
   })
-  const sortedDepartments = departments.slice().sort((a, b) => {
-    if (a.name < b.name) {
-      return -1
-    }
-    if (a.name > b.name) {
-      return 1
-    }
-    return 0
-  })
+  const sortedDepartments = departments.slice().sort()
 
   const filtered = sortedDepartments.filter(dep => usedDepartments.has(dep.value))
 
-  if (usedDepartments.has('Other')) {
+  if (usedDepartments.has('other')) {
     filtered.push({ name: 'Other', value: 'other' })
   }
-
+  console.log(usedDepartments)
+  console.log(filtered)
   return filtered
 })
 
@@ -119,7 +112,7 @@ const departmentsWithJobOpenings = computed(() => {
     filteredDepartments.value.forEach(dep => {
       result.push({
         name: dep.name,
-        jobs: groupedJobs[dep.value] || []
+        jobs: groupedJobs[dep.value]
       })
     })
   } else {
@@ -128,14 +121,14 @@ const departmentsWithJobOpenings = computed(() => {
       if (dep) {
         result.push({
           name: dep.name,
-          jobs: groupedJobs[depValue] || []
+          jobs: groupedJobs[depValue]
         })
       }
     })
   }
-
   return result
 })
+
 </script>
 
 <style lang="scss" scoped>

@@ -83,7 +83,6 @@ function selectDropdownItem (item: IDepartment) {
   searchQuery.value = ''
 }
 
-// search
 const filteredOptions = computed(() => {
   return props.options.filter(option =>
     option.name.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -102,8 +101,6 @@ const handleClickOutside = (event: MouseEvent) => {
   if (dropdownContainer.value && !dropdownContainer.value.contains(event.target as HTMLElement)) {
     isDropDownVisible.value = false
   }
-  // console.log('Filtered Options:', filteredOptions.value)
-  // console.log('Model Value:', modelValue.value)
 }
 
 onMounted(() => {
