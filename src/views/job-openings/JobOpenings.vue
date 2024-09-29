@@ -16,8 +16,8 @@
           </div>
           <div class="mb-6">
             <p class="capitalize">Departments:</p>
-            <AppMultipleSelect v-model:selected="selectedDepartments" :options="filteredDepartments" />
-            <p>Showing {{ countJobOpenings }} job openings</p>
+            <AppMultipleSelect v-model:selected="selectedDepartments" :options="validDepartments" />
+            <p>Showing {{ shownJobOpeningsQuantity }} job openings</p>
           </div>
           <div class="border-t-2 border-gray-ultra-light">
             <template v-for="dep in departmentsWithJobOpenings" :key="dep.name">
@@ -33,95 +33,62 @@
 </template>
 
 <script lang="ts" setup>
-import DepartmentJobs from './components/DepartmentJobs.vue'
-
-const countJobOpenings = computed(() => {
-  return jobOpenings.length === filteredJobOpenings.value.length
-    ? jobOpenings.length
-    : `${filteredJobOpenings.value.length} of ${jobOpenings.length}`
-})
-
+import { groupBy } from '../../core/helpers'
 const jobOpeningsStore = useJobOpeningsStore()
 const { jobOpenings, departments } = jobOpeningsStore
 
 const selectedDepartments = ref<string[]>([])
 
-const filteredJobOpenings = computed(() => {
+const shownJobOpeningsQuantity = computed(() => {
   if (selectedDepartments.value.length === 0) {
-    return [...new Set(Object.values(groupedJobs).flat())]
+    return jobOpenings.length
   }
 
-  const filteredJobs: IJobOpening[] = []
+  const uniqueJobOpenings = new Set()
 
-  selectedDepartments.value.forEach(department => {
-    if (groupedJobs[department]) {
-      filteredJobs.push(...groupedJobs[department])
+  selectedDepartments.value.forEach(depValue => {
+    if (groupedJobs[depValue]) {
+      groupedJobs[depValue].forEach(job => {
+        uniqueJobOpenings.add(job)
+      })
     }
   })
 
-  return [...new Set(filteredJobs)]
+  return `${uniqueJobOpenings.size} of ${jobOpenings.length}`
 })
 
-const filteredDepartments = computed(() => {
-  const usedDepartments = new Set<string>()
+const validDepartments = computed(() => {
+  const jobDepartments = new Set(jobOpenings.flatMap(job => job.departments))
 
-  jobOpenings.forEach(job => {
-    if (job.departments.length === 0) {
-      usedDepartments.add('other')
-    } else {
-      job.departments.forEach(dep => usedDepartments.add(dep))
-    }
-  })
-  const sortedDepartments = departments.slice().sort()
+  const validDepartments = departments.filter(dep => jobDepartments.has(dep.value))
+  validDepartments.sort((a, b) => a.name.localeCompare(b.name)).push({ name: 'Other', value: 'other' })
 
-  const filtered = sortedDepartments.filter(dep => usedDepartments.has(dep.value))
-
-  if (usedDepartments.has('other')) {
-    filtered.push({ name: 'Other', value: 'other' })
-  }
-  console.log(usedDepartments)
-  console.log(filtered)
-  return filtered
+  return validDepartments
 })
 
-function groupBy<T, K extends keyof any> (
-  array: T[],
-  getKey: (item: T) => K | K[]
-): Record<K, T[]> {
-  return array.reduce((acc, item) => {
-    const keys = getKey(item)
-    const keyArray = Array.isArray(keys) ? keys : [keys]
-
-    keyArray.forEach((key) => {
-      if (!acc[key]) {
-        acc[key] = []
-      }
-      acc[key].push(item)
-    })
-
-    return acc
-  }, {} as Record<K, T[]>)
-}
+console.log(validDepartments)
+console.log(validDepartments.value.sort())
 
 const groupedJobs = groupBy(jobOpenings, job => job.departments.length ? job.departments : ['other'])
+console.log(groupedJobs)
 
 const departmentsWithJobOpenings = computed(() => {
   const result: IDepartmentsWithJobOpenings[] = []
 
   if (selectedDepartments.value.length === 0) {
-    filteredDepartments.value.forEach(dep => {
+    validDepartments.value.forEach(department => {
       result.push({
-        name: dep.name,
-        jobs: groupedJobs[dep.value]
+        name: department.name,
+        jobs: groupedJobs[department.value]
       })
     })
   } else {
-    selectedDepartments.value.forEach(depValue => {
-      const dep = filteredDepartments.value.find(d => d.value === depValue)
+    selectedDepartments.value.forEach(selectetValue => {
+      const dep = validDepartments.value.find(d => d.value === selectetValue)
       if (dep) {
         result.push({
           name: dep.name,
-          jobs: groupedJobs[depValue]
+          jobs: groupedJobs[selectetValue]
         })
       }
     })
