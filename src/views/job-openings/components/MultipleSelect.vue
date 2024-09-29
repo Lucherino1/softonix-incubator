@@ -1,9 +1,10 @@
 <template>
   <div
     ref="dropdownContainer"
-    class="relative flex flex-col my-1 bg-white py-2 px-4 rounded-md h-[40px] w-full border
+    class="relative flex flex-col my-1 bg-white py-2 px-2 rounded-md h-[40px] w-full border-2
      border-gray-ultra-light justify-center hover:border-blue-500"
-    :class="isDropDownVisible? 'border-blue-500' : 'border-gray-ultra-light'"
+    :class="isDropdownVisible? 'border-blue-500' : 'border-gray-ultra-light'"
+    @click="isDropdownVisible = true; inputRef?.focus()"
   >
     <div class="flex gap-2 items-center">
       <div v-if="modelValue.length" class="flex items-center gap-2 justify-center text-center">
@@ -24,16 +25,25 @@
       <input
         ref="inputRef"
         v-model="searchQuery"
-        class="block w-full border border-white"
+        class="block w-full border border-white h-full"
         type="search"
         placeholder="Select departments"
-        @focus="isDropDownVisible = true"
-        @input="isDropDownVisible = true"
+        @focus="isDropdownVisible = true"
+        @input="isDropdownVisible = true"
       >
+      <span
+        :class="{
+          'rotate-180 transition-transform duration-300 ease-in-out': isDropdownVisible,
+          'rotate-0 transition-transform duration-300 ease-in-out': !isDropdownVisible
+        }"
+        @click.stop="toggleDropdown"
+      >
+        <IconDropdown />
+      </span>
     </div>
     <Transition name="slide-fade">
       <div
-        v-if="isDropDownVisible"
+        v-if="isDropdownVisible"
         class="absolute left-0 top-full z-50 bg-white w-full rounded shadow-lg mt-3"
       >
         <ul class="cursor-pointer w-full justify-center max-h-[200px] overflow-y-auto scroll-auto">
@@ -45,7 +55,7 @@
             :key="item.value"
             :class="modelValue.includes(item.value) ? 'bg-blue-100 text-blue-900 font-medium'
               : 'hover:bg-gray-ultra-light'"
-            class="dropdown__item"
+            class="px-2 py-2 truncate transition-colors duration-150"
             @click="selectDropdownItem(item)"
           >
             {{ item.name }}
@@ -57,8 +67,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted, ref, computed } from 'vue'
-
 const props = defineProps<{
   options: IDepartment[]
 }>()
@@ -67,8 +75,13 @@ const inputRef = ref<HTMLInputElement>()
 const modelValue = defineModel<string[]>('selected', { required: true })
 
 const dropdownContainer = ref<HTMLElement | null>(null)
-const isDropDownVisible = ref(false)
+const isDropdownVisible = ref(false)
 const searchQuery = ref('')
+
+const toggleDropdown = () => {
+  isDropdownVisible.value = !isDropdownVisible.value
+  if (isDropdownVisible.value) inputRef.value?.focus()
+}
 
 const selectedDepartments = computed(() => {
   return props.options.filter(option => modelValue.value.includes(option.value))
@@ -99,7 +112,7 @@ const removeItem = (option: string) => {
 
 const handleClickOutside = (event: MouseEvent) => {
   if (dropdownContainer.value && !dropdownContainer.value.contains(event.target as HTMLElement)) {
-    isDropDownVisible.value = false
+    isDropdownVisible.value = false
   }
 }
 
@@ -110,25 +123,4 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
-
 </script>
-
-<style lang="scss" scoped>
-.dropdown__item {
-  @apply px-2 py-2 truncate transition-colors duration-150;
-}
-
-.slide-fade-enter-active {
-  transition: all 0.1s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateY(-5px);
-  opacity: 0;
-}
-</style>
