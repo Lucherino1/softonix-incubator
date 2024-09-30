@@ -14,7 +14,7 @@
       </div>
       <div class="mb-6">
         <p class="capitalize">Departments:</p>
-        <MultipleSelect
+        <AppMultipleSelect
           v-model:selected="selectedDepartments"
           :options="validDepartments"
           displayField="name"
@@ -84,10 +84,10 @@ const departmentsWithJobOpenings = computed(() => {
     return allDepartmentsWithJobOpenings.value
   } else {
     selectedDepartments.value.forEach(selectetValue => {
-      const dep = validDepartments.value.find(d => d.value === selectetValue)
-      if (dep) {
+      const selectedDepartment = validDepartments.value.find(dep => dep.value === selectetValue)
+      if (selectedDepartment) {
         selectedDepartmentsWithJobs.push({
-          name: dep.name,
+          name: selectedDepartment.name,
           jobs: groupedJobs[selectetValue]
         })
       }

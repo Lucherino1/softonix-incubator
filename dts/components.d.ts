@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppButton: typeof import('./../src/components/AppButton.vue')['default']
     AppInput: typeof import('./../src/components/AppInput.vue')['default']
+    AppMultipleSelect: typeof import('./../src/components/AppMultipleSelect.vue')['default']
     Card: typeof import('./../src/components/Card.vue')['default']
     ContactItem: typeof import('./../src/views/contacts/components/ContactItem.vue')['default']
     DepartmentJobs: typeof import('./../src/views/job-openings/components/job-openings-list/DepartmentJobs.vue')['default']
@@ -24,10 +25,7 @@ declare module 'vue' {
     IconX: typeof import('./../src/components/icons/IconX.vue')['default']
     ItemObserver: typeof import('./../src/components/ItemObserver.vue')['default']
     JobOpeningsList: typeof import('./../src/views/job-openings/components/job-openings-list/JobOpeningsList.vue')['default']
-    LazyLoadObserver: typeof import('./../src/components/LazyLoadObserver.vue')['default']
     MenuList: typeof import('./../src/components/MenuList.vue')['default']
-    MultipleSelect: typeof import('./../src/components/MultipleSelect.vue')['default']
-    Observer: typeof import('./../src/components/Observer.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
