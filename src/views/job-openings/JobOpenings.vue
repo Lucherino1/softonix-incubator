@@ -16,14 +16,20 @@
           </div>
           <div class="mb-6">
             <p class="capitalize">Departments:</p>
-            <MultipleSelect v-model:selected="selectedDepartments" :options="validDepartments" />
+            <MultipleSelect
+              v-model:selected="selectedDepartments"
+              :options="validDepartments"
+              displayField="name"
+              valueField="value"
+              placeholder="Select departments"
+            />
             <p>Showing <span class=" font-medium">{{ shownJobOpeningsQuantity }}</span> job openings</p>
           </div>
           <div class="border-t-2 border-gray-ultra-light">
             <template v-for="dep in departmentsWithJobOpenings" :key="dep.id">
-              <Observer :removeIfInvisible="false">
+              <ItemObserver :removeIfInvisible="false">
                 <DepartmentJobs v-if="dep.jobs.length" :department="dep" />
-              </Observer>
+              </ItemObserver>
             </template>
           </div>
         </div>

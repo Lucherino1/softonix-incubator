@@ -3,13 +3,13 @@
     ref="dropdownContainer"
     class="relative flex flex-col my-1 bg-white py-2 px-2 rounded-md h-[40px] w-full border-2
      border-gray-ultra-light justify-center hover:border-blue-500"
-    :class="isDropdownVisible? 'border-blue-500' : 'border-gray-ultra-light'"
+    :class="isDropdownVisible ? 'border-blue-500' : 'border-gray-ultra-light'"
     @click="isDropdownVisible = true; inputRef?.focus()"
   >
     <div class="flex gap-2 items-center">
       <div v-if="modelValue.length" class="flex items-center gap-2 justify-center text-center">
         <div class="bg-blue-100 text-blue-500 px-2 py-1 rounded-md text-nowrap">
-          {{ selectedDepartments[0].name }}
+          {{ selectedItems[0][displayField] }}
           <span
             class="inline-flex items-center justify-center w-4 h-4 rounded-full
             transition-colors duration-300 hover:bg-white hover:text-gray ml-1 cursor-pointer"
@@ -18,8 +18,8 @@
             <IconX class="w-[10px] h-[10px] text-gray" />
           </span>
         </div>
-        <div v-if="selectedDepartments.length > 1" class="bg-blue-100 text-blue-500 px-2 py-1 rounded-md text-nowrap">
-          +{{ selectedDepartments.length - 1 }}
+        <div v-if="selectedItems.length > 1" class="bg-blue-100 text-blue-500 px-2 py-1 rounded-md text-nowrap">
+          +{{ selectedItems.length - 1 }}
         </div>
       </div>
       <input
@@ -27,11 +27,12 @@
         v-model="searchQuery"
         class="block w-full border border-white h-full"
         type="search"
-        placeholder="Select departments"
+        :placeholder="placeholder"
         @focus="isDropdownVisible = true"
         @input="isDropdownVisible = true"
       >
       <span
+        class="cursor-pointer"
         :class="{
           'rotate-180 transition-transform duration-300 ease-in-out': isDropdownVisible,
           'rotate-0 transition-transform duration-300 ease-in-out': !isDropdownVisible
@@ -52,13 +53,18 @@
           </li>
           <li
             v-for="item in filteredOptions"
-            :key="item.value"
-            :class="modelValue.includes(item.value) ? 'bg-blue-100 text-blue-900 font-medium'
+            :key="item[valueField]"
+            :class="modelValue.includes(item[valueField]) ? 'bg-blue-100 text-blue-900 font-medium'
               : 'hover:bg-gray-ultra-light'"
             class="px-2 py-2 truncate transition-colors duration-150"
             @click="selectDropdownItem(item)"
           >
-            {{ item.name }}
+            <div class="flex justify-between items-center">
+              <p>{{ item[displayField] }}</p>
+              <span v-if="modelValue.includes(item[valueField])">
+                <IconCheckMark class="w-3 h-3 text-blue-500" />
+              </span>
+            </div>
           </li>
         </ul>
       </div>
@@ -68,7 +74,10 @@
 
 <script lang="ts" setup>
 const props = defineProps<{
-  options: IDepartment[]
+  options: any[]
+  displayField: string
+  valueField: string
+  placeholder?: string
 }>()
 
 const inputRef = ref<HTMLInputElement>()
@@ -83,31 +92,27 @@ const toggleDropdown = () => {
   if (isDropdownVisible.value) inputRef.value?.focus()
 }
 
-const selectedDepartments = computed(() => {
-  return props.options.filter(option => modelValue.value.includes(option.value))
+const selectedItems = computed(() => {
+  return props.options.filter(option => modelValue.value.includes(option[props.valueField]))
 })
 
-function selectDropdownItem (item: IDepartment) {
-  if (modelValue.value.includes(item.value)) {
-    modelValue.value = modelValue.value.filter(selected => selected !== item.value)
+function selectDropdownItem (item: any) {
+  if (modelValue.value.includes(item[props.valueField])) {
+    modelValue.value = modelValue.value.filter(selected => selected !== item[props.valueField])
   } else {
-    modelValue.value.push(item.value)
+    modelValue.value.push(item[props.valueField])
   }
   searchQuery.value = ''
 }
 
 const filteredOptions = computed(() => {
   return props.options.filter(option =>
-    option.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    option[props.displayField].toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 })
 
-const removeItem = (option: string) => {
-  const newValue = modelValue.value.includes(option)
-    ? modelValue.value.filter(value => value !== option)
-    : [...modelValue.value, option]
-
-  modelValue.value = newValue
+const removeItem = (value: string) => {
+  modelValue.value = modelValue.value.filter(selected => selected !== value)
 }
 
 const handleClickOutside = (event: MouseEvent) => {
