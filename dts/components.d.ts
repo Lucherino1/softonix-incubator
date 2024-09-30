@@ -11,7 +11,7 @@ declare module 'vue' {
     AppInput: typeof import('./../src/components/AppInput.vue')['default']
     Card: typeof import('./../src/components/Card.vue')['default']
     ContactItem: typeof import('./../src/views/contacts/components/ContactItem.vue')['default']
-    DepartmentJobs: typeof import('./../src/views/job-openings/components/DepartmentJobs.vue')['default']
+    DepartmentJobs: typeof import('./../src/views/job-openings/components/job-openings-list/DepartmentJobs.vue')['default']
     IconArrowForward: typeof import('./../src/components/icons/IconArrowForward.vue')['default']
     IconArrowRight: typeof import('./../src/components/icons/IconArrowRight.vue')['default']
     IconCheckMark: typeof import('./../src/components/icons/IconCheckMark.vue')['default']
