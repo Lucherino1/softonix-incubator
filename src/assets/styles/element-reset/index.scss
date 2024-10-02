@@ -6,7 +6,7 @@
   ),
   $button-border-radius: (
     'default': 20px,
-  )
+  ),
 );
 
 @use "element-plus/theme-chalk/src/base";
@@ -14,3 +14,5 @@
 @use "element-plus/theme-chalk/src/form";
 @use "element-plus/theme-chalk/src/input";
 @use "element-plus/theme-chalk/src/card";
+
+// @import '/node_modules/element-plus/theme-chalk/src/common/var.scss'
