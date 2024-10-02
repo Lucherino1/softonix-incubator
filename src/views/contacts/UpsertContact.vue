@@ -4,59 +4,56 @@
       <template #header>
         <p class="font-semibold">New Contact</p>
       </template>
+      <el-form
+        ref="formRef"
+        label-position="top"
+        :rules="formRules"
+        :model="contactForm"
+        @submit.prevent="onSave"
+      >
+        <el-form-item label="Name" prop="name">
+          <el-input v-model="contactForm.name" />
+        </el-form-item>
 
-      <el-form>
-        <el-form
-          ref="formRef"
-          label-position="top"
-          :rules="formRules"
-          :model="contactForm"
-          @submit.prevent="onSave"
-        >
-          <el-form-item label="Name" prop="name">
-            <el-input v-model="contactForm.name" />
-          </el-form-item>
+        <el-form-item label="Description" prop="description">
+          <el-input v-model="contactForm.description" type="description" />
+        </el-form-item>
 
-          <el-form-item label="Description" prop="description">
-            <el-input v-model="contactForm.description" type="description" />
-          </el-form-item>
+        <el-form-item label="Image Link" prop="image">
+          <el-input v-model="contactForm.image" type="url" />
+        </el-form-item>
 
-          <el-form-item label="Image Link" prop="image">
-            <el-input v-model="contactForm.image" type="url" />
-          </el-form-item>
+        <div class="flex justify-between">
+          <el-button
+            :type="$elComponentType.info"
+            :size="$elComponentSize.large"
+            class="flex-1"
+            @click="$router.back"
+          >
+            Cancel
+          </el-button>
 
-          <div class="flex justify-between">
-            <el-button
-              :type="$elComponentType.info"
-              :size="$elComponentSize.large"
-              class="flex-1"
-              @click="$router.back"
-            >
-              Cancel
-            </el-button>
+          <el-button
+            v-if="currentContact"
+            :type="$elComponentType.danger"
+            :size="$elComponentSize.large" class="flex-1"
+            @click="onDelete"
+          >
+            Delete
+          </el-button>
 
-            <el-button
-              v-if="currentContact"
-              :type="$elComponentType.danger"
-              :size="$elComponentSize.large" class="flex-1"
-              @click="onDelete"
-            >
-              Delete
-            </el-button>
-
-            <el-button
-              :type="$elComponentType.primary"
-              :size="$elComponentSize.large"
-              class="flex-1"
-              native-type="submit"
-            >
-              <template #icon>
-                <IconPlus />
-              </template>
-              Save
-            </el-button>
-          </div>
-        </el-form>
+          <el-button
+            :type="$elComponentType.primary"
+            :size="$elComponentSize.large"
+            class="flex-1"
+            native-type="submit"
+          >
+            <template #icon>
+              <IconPlus />
+            </template>
+            Save
+          </el-button>
+        </div>
       </el-form>
     </el-card>
   </div>
