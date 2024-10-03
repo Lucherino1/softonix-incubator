@@ -20,7 +20,7 @@
       </template>
     </el-table-column>
 
-    <el-table-column label="Name" prop="name" width="150px">
+    <el-table-column label="Name" prop="name" width="200px" align="center">
       <template #default="{ row }">
         <div v-if="row.editMode">
           <el-input v-model="row.name" type="text" @click.stop />

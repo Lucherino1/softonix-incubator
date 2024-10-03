@@ -7,10 +7,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppButton: typeof import('./../src/components/AppButton.vue')['default']
-    AppInput: typeof import('./../src/components/AppInput.vue')['default']
-    Card: typeof import('./../src/components/Card.vue')['default']
-    ContactForm: typeof import('./../src/views/contacts/components/ContactForm.vue')['default']
     ContactItem: typeof import('./../src/views/contacts/components/ContactItem.vue')['default']
     ContactTable: typeof import('./../src/views/contacts/components/ContactTable.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -25,7 +21,6 @@ declare module 'vue' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     IconDefaultContact: typeof import('./../src/components/icons/IconDefaultContact.vue')['default']
     IconEnvelope: typeof import('./../src/components/icons/IconEnvelope.vue')['default']
-    IconErrorUserImage: typeof import('./../src/components/icons/IconErrorUserImage.vue')['default']
     IconPhone: typeof import('./../src/components/icons/IconPhone.vue')['default']
     IconPlus: typeof import('./../src/components/icons/IconPlus.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
