@@ -226,6 +226,7 @@
     "requestInterceptor": true,
     "responseInterceptor": true,
     "useApiClient": true,
-    "useLink": true
+    "useLink": true,
+    "eseElContactFormRules": true
   }
 }

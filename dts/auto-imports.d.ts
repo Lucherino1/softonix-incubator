@@ -34,6 +34,7 @@ declare global {
   const defineStore: typeof import('pinia')['defineStore']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
+  const eseElContactFormRules: typeof import('../src/composables/contact-form-rules')['eseElContactFormRules']
   const exampleGeneralService: typeof import('../src/services/example-general.service')['exampleGeneralService']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getActivePinia: typeof import('pinia')['getActivePinia']

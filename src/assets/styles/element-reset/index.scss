@@ -7,6 +7,9 @@
   $button-border-radius: (
     'default': 20px,
   ),
+  $table-padding: (
+    'large': 24px 0,
+  )
 );
 
 @use "element-plus/theme-chalk/src/base";
@@ -14,5 +17,8 @@
 @use "element-plus/theme-chalk/src/form";
 @use "element-plus/theme-chalk/src/input";
 @use "element-plus/theme-chalk/src/card";
+@use "element-plus/theme-chalk/src/tabs";
+@use "element-plus/theme-chalk/src/table";
+@use "element-plus/theme-chalk/src/image";
 
-// @import '/node_modules/element-plus/theme-chalk/src/common/var.scss'
+@import '/node_modules/element-plus/theme-chalk/src/common/var.scss'
