@@ -30,3 +30,16 @@ export function useMinLenRule (min: number): FormItemRule {
 export function useMaxLenRule (max: number): FormItemRule {
   return { max, message: `Max length is ${max}`, trigger: 'change' }
 }
+
+export function useConfirmPasswordRule (formModel: { password: string }): FormItemRule {
+  return {
+    validator: (rule: FormItemRule, value: string, callback: (error?: Error) => void) => {
+      if (value !== formModel.password) {
+        callback(new Error('Passwords do not match'))
+      } else {
+        callback()
+      }
+    },
+    trigger: 'change'
+  }
+}

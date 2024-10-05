@@ -20,9 +20,14 @@ export const useAuthStore = defineStore('authStore', () => {
     window.location.href = router.resolve(routeNames.login).href
   }
 
+  function register (payload: ILoginPayload) {
+    return authService.register(payload)
+  }
+
   return {
     accessToken,
     login,
-    logout
+    logout,
+    register
   }
 })

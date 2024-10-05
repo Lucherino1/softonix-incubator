@@ -20,9 +20,14 @@
           <el-input v-model="formModel.password" type="password" />
         </el-form-item>
 
-        <el-button native-type="submit" :type="$elComponentType.primary">
-          Login
-        </el-button>
+        <div class="flex w-2/4 mx-auto pt-5">
+          <el-button plain class="flex-1" :type="$elComponentType.primary" @click="onSingUpPage">
+            Sign Up
+          </el-button>
+          <el-button native-type="submit" class="flex-1" :type="$elComponentType.primary">
+            Login
+          </el-button>
+        </div>
       </el-form>
     </el-card>
   </div>
@@ -56,5 +61,9 @@ function submit () {
         .finally(() => (loading.value = false))
     }
   })
+}
+
+function onSingUpPage () {
+  router.push({ name: $routeNames.register })
 }
 </script>
