@@ -17,7 +17,7 @@
       Logout
     </el-button>
   </div>
-
+  <button @click="console.log(contacts)">Show</button>
   <div class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
     <ContactItem
       v-for="contact in contacts"

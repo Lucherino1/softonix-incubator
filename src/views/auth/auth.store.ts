@@ -2,11 +2,14 @@ import { routeNames, router } from '@/router'
 
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
+  const refreshToken = ref(localStorage.getItem('ref-token'))
 
   function setToken (token: string) {
     accessToken.value = token
     localStorage.setItem('si-token', token)
   }
+
+  // function setRefreshToken ()
 
   function login (payload: ILoginRequest) {
     return authService.login(payload)
@@ -20,7 +23,7 @@ export const useAuthStore = defineStore('authStore', () => {
     window.location.href = router.resolve(routeNames.login).href
   }
 
-  function register (payload: ILoginPayload) {
+  function register (payload: IRegisterRequest) {
     return authService.register(payload)
   }
 

@@ -5,7 +5,7 @@ class AuthService {
   }
 
   // POST: auth/v1/signup, Payload: { email: string, password: string }
-  register (payload: ILoginRequest) {
+  register (payload: IRegisterRequest) {
     return useHttp.post('auth/v1/signup', payload)
   }
 

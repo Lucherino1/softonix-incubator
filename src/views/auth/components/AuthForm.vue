@@ -22,20 +22,23 @@
       <el-input v-model="formModel.confirmPassword" type="password" />
     </el-form-item>
 
-    <div class="flex w-2/4 mx-auto pt-5">
-      <el-button plain class="flex-1" :type="$elComponentType.primary" @click="toggleAuthPage">
-        {{ submitBtnText }}
-      </el-button>
-      <el-button native-type="submit" class="flex-1" :type="$elComponentType.primary">
+    <div class="flex flex-col w-2/4 mx-auto pt-5">
+      <el-button native-type="submit" :type="$elComponentType.primary">
         {{ toggleAuthPageBtnText }}
       </el-button>
+      <div class="flex flex-col gap-2 justify-center content-center text-center pt-7">
+        <p class="text-gray-medium">Already have an account?</p>
+        <el-button link class="underline" :type="$elComponentType.primary" @click="toggleAuthPage">
+          {{ submitBtnText }}
+        </el-button>
+      </div>
     </div>
   </el-form>
 </template>
 
 <script lang="ts" setup>
 const emit = defineEmits<{
-  (e: 'submit', formModel: { email: string; password: string; confirmPassword?: string }): void
+  (e: 'submit', formModel: { email: string; password: string })
 }>()
 
 const router = useRouter()
@@ -47,10 +50,10 @@ const isRegistration = computed(() => {
 })
 
 const toggleAuthPageBtnText = computed(() => {
-  return isRegistration.value ? 'Sing in' : 'Sing up'
+  return isRegistration.value ? 'Create an account' : 'Sing in'
 })
 const submitBtnText = computed(() => {
-  return isRegistration.value ? 'Sing up' : 'Sing in'
+  return isRegistration.value ? 'Sing In' : 'Sing up'
 })
 
 const formRef = ref()

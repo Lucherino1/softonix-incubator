@@ -6,22 +6,42 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
     return contactsService.getContacts()
       .then(res => {
+        console.log(res)
         contacts.value = res
       })
   }
 
-  function addContact (contact: IContact) {
-    contacts.value.push(contact)
+  async function addContact (contact: IContact) {
+    try {
+      await contactsService.createContact(contact)
+      const data = await contactsService.getContacts()
+      contacts.value = data
+    } catch (error) {
+      error.value = error.message
+      alert(error.message)
+    }
   }
 
-  function updateContact (contact: IContact) {
-    const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
-    contacts.value[currentIndex] = { ...contact }
+  async function updateContact (contact: IContact) {
+    try {
+      const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
+      await contactsService.updateContact(contact)
+      contacts.value[currentIndex] = { ...contact }
+    } catch (error) {
+      error.value = error.message
+      alert(error.message)
+    }
   }
 
-  function deleteContact (contact: IContact) {
-    const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
-    contacts.value.splice(currentIndex, 1)
+  async function deleteContact (contact: IContact) {
+    try {
+      const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
+      await contactsService.deleteContact(contact)
+      contacts.value.splice(currentIndex, 1)
+    } catch (error) {
+      error.value = error.message
+      alert(error.message || 'An error occurred while deleting the contact')
+    }
   }
 
   return {
