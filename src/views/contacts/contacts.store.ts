@@ -16,7 +16,6 @@ export const useContactsStore = defineStore('contactsStore', () => {
       const data = await contactsService.getContacts()
       contacts.value = data
     } catch (error) {
-      error.value = error.message
       alert(error.message)
     }
   }
@@ -27,7 +26,6 @@ export const useContactsStore = defineStore('contactsStore', () => {
       await contactsService.updateContact(contact)
       contacts.value[currentIndex] = { ...contact }
     } catch (error) {
-      error.value = error.message
       alert(error.message)
     }
   }
@@ -38,7 +36,6 @@ export const useContactsStore = defineStore('contactsStore', () => {
       await contactsService.deleteContact(contact)
       contacts.value.splice(currentIndex, 1)
     } catch (error) {
-      error.value = error.message
       alert(error.message || 'An error occurred while deleting the contact')
     }
   }
