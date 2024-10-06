@@ -238,6 +238,8 @@
     "useId": true,
     "useModel": true,
     "useTemplateRef": true,
-    "useConfirmPasswordRule": true
+    "useConfirmPasswordRule": true,
+    "accessTokenKey": true,
+    "refreshTokenKey": true
   }
 }

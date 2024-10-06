@@ -27,7 +27,7 @@
         {{ toggleAuthPageBtnText }}
       </el-button>
       <div class="flex flex-col gap-2 justify-center content-center text-center pt-7">
-        <p class="text-gray-medium">Already have an account?</p>
+        <p class="text-gray-medium">{{ authText }}</p>
         <el-button link class="underline" :type="$elComponentType.primary" @click="toggleAuthPage">
           {{ submitBtnText }}
         </el-button>
@@ -55,6 +55,9 @@ const toggleAuthPageBtnText = computed(() => {
 const submitBtnText = computed(() => {
   return isRegistration.value ? 'Sing In' : 'Sing up'
 })
+const authText = computed(() => {
+  return isRegistration.value ? 'Already have an account?' : "Don't have an account yet?"
+})
 
 const formRef = ref()
 const formModel = reactive({
@@ -77,10 +80,12 @@ function submit () {
     }
   })
 }
+
 function toggleAuthPage () {
   if (route.name === $routeNames.login) {
     router.push({ name: $routeNames.register })
+  } else {
+    router.push({ name: $routeNames.login })
   }
-  router.push({ name: $routeNames.login })
 }
 </script>

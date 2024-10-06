@@ -6,7 +6,6 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
     return contactsService.getContacts()
       .then(res => {
-        console.log(res)
         contacts.value = res
       })
   }

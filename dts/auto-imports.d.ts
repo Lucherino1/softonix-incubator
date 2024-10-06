@@ -7,6 +7,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
+  const accessTokenKey: typeof import('../src/composables/http/index')['accessTokenKey']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const authService: typeof import('../src/services/auth.service')['authService']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -94,6 +95,7 @@ declare global {
   const refDefault: typeof import('@vueuse/core')['refDefault']
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
+  const refreshTokenKey: typeof import('../src/composables/http/index')['refreshTokenKey']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']

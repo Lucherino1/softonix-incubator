@@ -9,17 +9,22 @@ export const useAuthStore = defineStore('authStore', () => {
     localStorage.setItem('si-token', token)
   }
 
-  // function setRefreshToken ()
+  function setRefreshToken (token: string) {
+    refreshToken.value = token
+    localStorage.setItem('ref-token', token)
+  }
 
   function login (payload: ILoginRequest) {
     return authService.login(payload)
       .then((res) => {
         setToken(res.access_token)
+        setRefreshToken(res.refresh_token)
       })
   }
 
   function logout () {
     localStorage.removeItem('si-token')
+    localStorage.removeItem('ref-token')
     window.location.href = router.resolve(routeNames.login).href
   }
 
@@ -29,8 +34,11 @@ export const useAuthStore = defineStore('authStore', () => {
 
   return {
     accessToken,
+    refreshToken,
     login,
     logout,
-    register
+    register,
+    setToken,
+    setRefreshToken
   }
 })
