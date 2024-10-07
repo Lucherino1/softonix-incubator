@@ -11,6 +11,7 @@
 
 <script setup>
 const { register } = useAuthStore()
+const { $routeNames } = useGlobalProperties()
 const { router } = useRouter()
 
 const loading = ref(false)
@@ -18,7 +19,7 @@ const loading = ref(false)
 function submit (formModel) {
   loading.value = true
   register(formModel)
-    .then(() => router.push({ name: $routeNames.login }))
+    .then(() => router.push({ name: $routeNames.contacts }))
     .finally(() => (loading.value = false))
 }
 </script>
