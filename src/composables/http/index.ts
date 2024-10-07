@@ -1,3 +1,4 @@
+// Solution 1
 import axios from 'axios'
 
 const instance = axios.create({
@@ -46,3 +47,68 @@ instance.interceptors.response.use(
 )
 
 export const useHttp = instance
+
+// Solution 2
+
+// import axios from 'axios'
+
+// const instance = axios.create({
+//   baseURL: import.meta.env.VITE_API_URL,
+//   headers: {
+//     apikey: import.meta.env.VITE_API_KEY
+//   }
+// })
+
+// const isTokenRefreshing = ref(false)
+
+// instance.interceptors.request.use(
+//   async config => {
+//     const {
+//       accessToken, refreshToken, setRefreshToken, setToken, logout, expiresAt, expiresIn,
+//       setExpiredAtTime, setExpiredInTime
+//     } = useAuthStore()
+
+//     if (expiresIn) {
+//       const nowInSeconds = Math.floor(Date.now() / 1000)
+//       if (nowInSeconds > expiresAt - 10) {
+//         if (!isTokenRefreshing.value && refreshToken) {
+//           isTokenRefreshing.value = true
+//           try {
+//             const res = await authService.refreshToken(refreshToken)
+//             setToken(res.access_token)
+//             setRefreshToken(res.refresh_token)
+//             setExpiredAtTime(res.expires_at)
+//             setExpiredInTime(res.expires_in)
+//             config.headers.authorization = `Bearer ${res.access_token}`
+//           } catch (error) {
+//             console.error(error.message)
+//             alert('Session expired, please sing in to your account')
+//             logout()
+//           } finally {
+//             isTokenRefreshing.value = false
+//           }
+//         }
+//       }
+//     }
+//     if (accessToken) {
+//       config.headers.authorization = `Bearer ${accessToken}`
+//     }
+//     return config
+//   }
+// )
+
+// instance.interceptors.response.use(
+//   res => res.data,
+//   error => {
+//     console.log(error)
+
+//     const { logout } = useAuthStore()
+//     if (error.response.status === 401) {
+//       logout()
+//     }
+
+//     return Promise.reject(error)
+//   }
+// )
+
+// export const useHttp = instance
