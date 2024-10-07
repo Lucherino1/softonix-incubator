@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('authStore', () => {
     localStorage.setItem('ref-token', token)
   }
 
-  function login (payload: ILoginRequest) {
+  async function login (payload: ILoginRequest) {
     return authService.login(payload)
       .then((res) => {
         const now = Math.floor(Date.now() / 1000)
@@ -48,7 +48,7 @@ export const useAuthStore = defineStore('authStore', () => {
     window.location.href = router.resolve(routeNames.login).href
   }
 
-  function register (payload: { email: string; password: string }) {
+  async function register (payload: { email: string; password: string }) {
     return authService.register(payload)
       .then((res) => {
         const token = res.access_token

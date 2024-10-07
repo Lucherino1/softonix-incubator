@@ -13,7 +13,7 @@
         </template>
 
         <template v-else>
-          <p class="font-medium cursor-text">{{ contact.name }}</p>
+          <p class="font-medium cursor-text truncate">{{ contact.name }}</p>
           <p class="text-gray cursor-text mt-1 truncate">
             {{ contact.description }}
           </p>

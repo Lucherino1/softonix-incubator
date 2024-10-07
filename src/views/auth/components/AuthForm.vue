@@ -22,6 +22,8 @@
       <el-input v-model="formModel.confirmPassword" type="password" />
     </el-form-item>
 
+    <slot name="loginError" />
+
     <div class="flex flex-col w-2/4 mx-auto pt-5">
       <el-button native-type="submit" :type="$elComponentType.primary">
         {{ toggleAuthPageBtnText }}

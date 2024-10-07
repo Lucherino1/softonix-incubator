@@ -13,8 +13,8 @@ export const useContactsStore = defineStore('contactsStore', () => {
   async function addContact (contact: IContact) {
     try {
       await contactsService.createContact(contact)
-      const data = await contactsService.getContacts()
-      contacts.value = data
+      const contactsData = await contactsService.getContacts()
+      contacts.value = contactsData
     } catch (error) {
       alert(error.message)
     }
