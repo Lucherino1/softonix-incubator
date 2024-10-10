@@ -31,6 +31,24 @@
       @save="updateContact"
     />
   </div>
+
+  <p class="font-medium text-lg">Example of LazyImg component:</p>
+  <div class="w-full max-h-[500px] overflow-y-scroll rounded-lg">
+    <div class="flex flex-col justify-between items-center w-full h-[4000px] bg-white p-7">
+      <div class="w-[400px] h-[200px]">
+        <LazyImg
+          :img-src="'https://images.ctfassets.net/2vu6tcanchej/6rDTPbySjEVfhuqppgYc5h/7e0707c6ca35fd55ab5f770e0cfb601a/Softonix_Incubator_3.png'"
+          :img-alt="'lazy-img-test-1'"
+        />
+      </div>
+      <div class="w-[100px] h-[100px]">
+        <LazyImg
+          :img-src="'https://images.ctfassets.net/2vchej/2iFQbopLMoNhU3XaqqJHUx/d90c48f4427c0dbfb7b7d1dbdf44ec8b/-tech_savvy__2_.png'"
+          :img-alt="'lazy-img-test-3'"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
