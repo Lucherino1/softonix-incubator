@@ -34,9 +34,10 @@ const props = defineProps<{
 }>()
 
 const intersectionTargetRef = ref<HTMLElement | null>(null)
+const observedImgSrc = ref<string | null>(null)
+
 const imageHasError = ref(false)
 const isSkeletonLoading = ref(true)
-const observedImgSrc = ref<string | null>(null)
 const imageLoadingStarted = ref(false)
 const isLoaded = ref(false)
 
